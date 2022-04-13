@@ -27,14 +27,13 @@ class User(db.Model):
 class Alumni (db.Model):
     alumniID= db.Column('alumniID', db.Integer, primary_key=True)
     userID= db.Column('userID', db.Integer, db.ForeignKey('user.userID')) #Foreign Key userID
-    gradYear= db.Column(db.Integer, unique=False, nullable=True)    #all made nullable to allow choice between alumni amd general account
-    programme= db.Column(db.String(60), unique=False, nullable=True)
-    department= db.Column(db.String(60), unique=False, nullable=True)
-    faculty= db.Column(db.String(60), unique=False, nullable=True)
-
-    firstName= db.Column(db.String(30), unique=False, nullable=True)
-    lastName= db.Column(db.String(30), unique=False, nullable=True) 
-    email= db.Column(db.String(40), unique=True, nullable=True) 
+    gradYear= db.Column(db.Integer, unique=False, nullable=False)    #all made nullable to allow choice between alumni amd general account
+    programme= db.Column(db.String(60), unique=False, nullable=False)
+    department= db.Column(db.String(60), unique=False, nullable=False)
+    faculty= db.Column(db.String(60), unique=False, nullable=False)
+    firstName= db.Column(db.String(30), unique=False, nullable=False)
+    lastName= db.Column(db.String(30), unique=False, nullable=False) 
+    email= db.Column(db.String(40), unique=True, nullable=False) 
 
     def toDict(self):
         return{
@@ -52,10 +51,9 @@ class GeneralUser (db.Model):
     generalUserID= db.Column('generalUserID', db.Integer, primary_key=True)
     userID= db.Column('userID', db.Integer, db.ForeignKey('user.userID')) #Foreign Key userID
     company= db.Column (db.String(80), unique=False, nullable=True) #all made null to allow choice between alumni amd general account
-
-    firstName= db.Column(db.String(30), unique=False, nullable=True)
-    lastName= db.Column(db.String(30), unique=False, nullable=True) 
-    email= db.Column(db.String(40), unique=True, nullable=True) 
+    firstName= db.Column(db.String(30), unique=False, nullable=False)
+    lastName= db.Column(db.String(30), unique=False, nullable=False) 
+    email= db.Column(db.String(40), unique=True, nullable=False) 
 
     def toDict(self):
         return{
@@ -64,4 +62,49 @@ class GeneralUser (db.Model):
             'lastName':self.lastName,
             'email':self.email,
             'company': self.company
+        }
+
+class ProfilePicture (db.Model):
+    picID=db.Column(db.Integer, primary_key=True)
+    filename= db.Column(db.String, nullable=False)
+    url=db.Column(db.String, nullable=False)
+    userID= db.Column('userID', db.Integer, db.ForeignKey('user.userID'))
+
+    def __init__(self, filename, url):
+        self.filename=filename
+        self.url=url
+
+class Friend (db.Model):
+    friendID=db.Column(db.Integer, primary_key=True)
+    userID= db.Column('userID', db.Integer, db.ForeignKey('user.userID'))   
+    user = db.relationship('User', backref='friend', lazy=True, cascade="all, delete-orphan")   #is the friend of the user
+
+    def toDict(self):
+        return{
+            'friend':self.user.toDict()
+        }
+
+class JobSpec (db.Model):
+    fileID=db.Column(db.Integer, primary_key=True)
+    filename= db.Column(db.String, nullable=False)
+    url=db.Column(db.String, nullable=False)
+    jobID= db.Column('jobID', db.Integer, db.ForeignKey('job.jobID'))
+
+    def __init__(self, filename, url):
+        self.filename=filename
+        self.url=url
+
+class Job (db.Model):
+    jobID=db.Column(db.Integer, primary_key=True)
+    userID= db.Column('userID', db.Integer, db.ForeignKey('user.userID'))
+    description= db.Column(db.String, nullable=True)
+    link= db.Column(db.String, nullable=True)
+    applicationDeadline= db.Column(db.Date, nullable=False)
+
+    def toDict(self):
+        return{
+            'jobID': self.jobID,
+            'description': self.description,
+            'link':self.link,
+            'applicationDeadline':self.applicationDeadline,
         }
