@@ -9,24 +9,26 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>{% block title %}{% endblock %}</title>
+    <title>Pelican Legion</title>
 
   </head>
   <body>
-    <nav class="purple">
+    <nav class="blue">
       <div class="nav-wrapper">
-        <a href="#!" class="brand-logo center">{% block page %}{% endblock %}</a>
-        <div class="nav-wrapper">
-            <ul id="nav-mobile" class="left">
-                <li><a href="/">Home</a></li>
-                <li><a href="/users">Users Jinja</a></li>
-                <li><a href="/static/users">Users JS</a></li>
-            </ul>
-        </div>
+        <a href="#" class="brand-logo center">Pelican Legion</a>
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+          <li><a href="">Alumni Gallery</a></li>
+          <li><a href="">Friends</a></li>
+          <li><a href="">Job Board</a></li>
+        </ul>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="/login">Login</a></li>
+          <li><a href="">Sign Up</a></li>
+        </ul>
       </div>
     </nav>
     
-    {% with messages = get_flashed_messages() %}
+    <!-- {% with messages = get_flashed_messages() %}
     {% if messages %}
     <nav class="white black-text" style="padding: 10px">
       <div class="nav-wrapper">
@@ -40,7 +42,7 @@
     {% endif %}
     {% endwith %}
 
-    <div class="container" id="content">{% block content %}{% endblock %}</div>
+    <div class="container" id="content">{% block content %}{% endblock %}</div> -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </body>

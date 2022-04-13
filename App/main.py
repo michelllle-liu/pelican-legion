@@ -2,7 +2,7 @@
 #hello again
 #TESTING 123
 import os
-from flask import Flask
+from flask import Flask, render_template
 from flask_login import LoginManager, current_user
 from flask_uploads import DOCUMENTS, IMAGES, TEXT, UploadSet, configure_uploads
 from flask_cors import CORS
@@ -63,3 +63,7 @@ def create_app(config={}):
 
 app = create_app()
 migrate = get_migrate(app)
+
+@app.route('/login')
+def login():
+    return render_template('login.html')
