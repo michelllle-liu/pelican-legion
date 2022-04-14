@@ -2,6 +2,9 @@
 
 {{ super() }}
 
-{% block content %}
-    <p>This is a boileplate flask application which follows the MVC pattern for structuring the project.</p>
+{% block links %}
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="/login">Login</a></li>
+        <li><a href="/signup">Sign Up</a></li>
+    </ul>
 {% endblock %}

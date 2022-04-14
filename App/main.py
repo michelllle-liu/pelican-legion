@@ -3,6 +3,7 @@
 #TESTING 123
 import os
 from flask import Flask, render_template
+from flask_jwt import JWT, jwt_required, current_identity
 from flask_login import LoginManager, current_user
 from flask_uploads import DOCUMENTS, IMAGES, TEXT, UploadSet, configure_uploads
 from flask_cors import CORS
@@ -64,6 +65,56 @@ def create_app(config={}):
 app = create_app()
 migrate = get_migrate(app)
 
+''' Set up JWT here '''
+
+def authenticate(uname, password):
+  user = User.query.filter_by(username=uname).first()
+  if user and user.check_password(password):
+    return user
+
+def identity(payload):
+  return User.query.get(payload['identity'])
+
+jwt = JWT(app, authenticate, identity)    # auto creates /auth route
+
+''' End JWT Setup '''
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
 @app.route('/login')
 def login():
     return render_template('login.html')
+
+@app.route('/signup')
+def show_signup():
+    return render_template('signup.html')
+
+@app.route('/signup', methods=['POST'])
+def signup():
+    user_data = request.get_json()    # receives new user data from the post request, i.e. the body
+
+    # checking if user already exists
+
+    old_user = User.query.filter_by(username=user_data['username']).first()
+
+    if not old_user:
+        old_user = User.query.filter_by(email=user_data['email']).first()
+  
+    if old_user:
+        return 'username or email already exists'
+  
+    # if username or email does not already exist
+    new_user = User(username=user_data['username'], email=user_data['email'])
+    new_user.set_password(user_data['password'])    # hashing password
+
+    db.session.add(new_user)
+    db.session.commit()
+
+    return 'user created'
+
+@app.route('/dashboard')
+@jwt_required()
+def dashboard():
+    return render_template('dashboard.html')
