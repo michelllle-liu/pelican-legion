@@ -16,15 +16,7 @@
     <nav class="blue">
       <div class="nav-wrapper">
         <a href="#" class="brand-logo center">Pelican Legion</a>
-        <ul id="nav-mobile" class="left hide-on-med-and-down">
-          <li><a href="">Alumni Gallery</a></li>
-          <li><a href="">Friends</a></li>
-          <li><a href="">Job Board</a></li>
-        </ul>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="/login">Login</a></li>
-          <li><a href="">Sign Up</a></li>
-        </ul>
+        {% block links %}{% endblock %}
       </div>
     </nav>
     
@@ -40,9 +32,9 @@
       </div>
     </nav>
     {% endif %}
-    {% endwith %}
+    {% endwith %} -->
 
-    <div class="container" id="content">{% block content %}{% endblock %}</div> -->
+    <div class="container" id="content">{% block content %}{% endblock %}</div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </body>
