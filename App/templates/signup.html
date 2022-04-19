@@ -3,5 +3,74 @@
 {{ super() }}
 
 {% block content %}
-    <p>jrkjerhgru</p>
+    <div class = "container">
+        <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 10px 100px 10px 50px; border: 1px solid #EEE;">
+
+            <form class="signup-container">
+                <h5> Sign Up for Pelican Legion</h5>
+                <br>
+                <p>
+                <h7>First Name</h7>
+                <input class="fname-input" type="text" required></p>
+                <p>
+                <h7>Last Name</h7>
+                <input class="lname-input" type="text" required></p>
+                <p>
+                <h7>Create Password</h7>
+                <input class="pwrd-input" type="password" id ='create-pwrd'></p>
+
+                <p>
+                    <h7>Re-enter Password</h7>
+                    <input class ='validate' type = 'password' id = 'confirm-pwrd'>
+                </p>
+
+                <p>
+                <h7>Email</h7>
+                <input class="email-input" type="text"></p>
+                </label>
+
+                <p>
+                    <p>
+                        <h7>Are you a Past-Student or Recruiter?</h7>
+                    </p>
+                    <p>
+                    <label>
+                        <input name="group1" type="radio" value="past_student" onclick="show_extra_info()" checked/>
+                        <span>Past Student</span>
+                    </label>
+                    </p>
+
+                    <p>
+                      <label>
+                        <input name="group1" type="radio" value="recruiter" onclick="show_extra_info()"/>
+                        <span>Recruiter</span>
+                      </label>
+                    </p>
+                    
+                </p>
+                
+                <p>
+                    
+                    <h7>Please choose your department or faculty</h7><br><br/>
+                    <a  href="#" data-target="dropdown" class="btn red accent-1 dropdown-trigger" >Drop Me!</a>
+                    
+                    <ul class="dropdown-content" id="dropdown" >
+                        <li><a href="#">Sub</a></li>
+                        <li><a href="#">Sub</a></li>
+                        <li><a href="#">Sub</a></li>
+                    </ul>
+                    
+                </p>
+
+                <centre>
+                    <div class='row'>
+                      <button type='submit' name='btn_signup' class='col s12 btn btn-large waves-effect indigo'>Create account</button>
+                    </div>
+                  </centre>
+              </form>
+              
+            
+               
+    </div>
+
 {% endblock %}

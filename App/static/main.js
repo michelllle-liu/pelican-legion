@@ -14,9 +14,14 @@ function loadTable(users){
     }
 }
 
+
 async function main(){
     const users = await getUserData();
     loadTable(users);
 }
+
+
+
+
 
 main();
