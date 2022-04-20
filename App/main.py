@@ -1,8 +1,5 @@
-#hello 
-#hello again
-#TESTING 123
 import os
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_jwt import JWT, jwt_required, current_identity
 from flask_login import LoginManager, current_user
 from flask_uploads import DOCUMENTS, IMAGES, TEXT, UploadSet, configure_uploads
@@ -84,7 +81,7 @@ def index():
     return render_template('index.html')
 
 @app.route('/login')
-def login():
+def show_login():
     return render_template('login.html')
 
 @app.route('/signup')
@@ -114,7 +111,9 @@ def signup():
 
     return 'user created'
 
-@app.route('/dashboard')
-@jwt_required()
-def dashboard():
-    return render_template('dashboard.html')
+@app.route('/login', methods=['POST'])
+def login():
+    username = request.form['username']
+    password = request.form['password']
+    info = username + password
+    return info 

@@ -3,7 +3,7 @@
 {{ super() }}
 
 {% block content %}
-    <div class = "container valign-wrapper">
+    <div class = "container">
         <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 10px 100px 10px 50px; border: 1px solid #EEE;">
 
             <form class="signup-container">
@@ -15,6 +15,9 @@
                 <p>
                 <h7>Last Name</h7>
                 <input class="lname-input" type="text" required></p>
+                <p>
+                <h7>Username</h7>
+                <input class="uname-input" type="text" required></p>
                 <p>
                 <h7>Create Password</h7>
                 <input class="pwrd-input" type="password" id ='create-pwrd'></p>
@@ -29,9 +32,52 @@
                 <input class="email-input" type="text"></p>
                 </label>
 
+                <p>
+                    <p>
+                        <h7>Are you a Past-Student or Recruiter?</h7>
+                    </p>
+                    <p>
+                    <label>
+                        <input name="group1" type="radio" value="past_student" id="option1" onclick="loadSignUpForm()" checked/>
+                        <span>Past Student</span>
+                    </label>
+                    </p>
+
+                    <p>
+                      <label>
+                        <input name="group1" type="radio" value="recruiter" id="option2" onclick="loadSignUpForm()"/>
+                        <span>Recruiter</span>
+                      </label>
+                    </p>
+                    
+                </p>
+                
+                <div hidden id="ps_form">
+                    
+                    <h7>Please choose your department or faculty</h7><br><br/>
+                    <a  href="#" data-target="dropdown" class="btn red accent-1 dropdown-trigger" >Programmes</a>
+                    
+                    <ul class="dropdown-content" id="dropdown" >
+                        <li><a href="#">Computer Science</a></li>
+                        <li><a href="#">Maths</a></li>
+                        <li><a href="#">Biology</a></li>
+                    </ul>
+                    <br><br>
+                </div>
+
+                <div hidden id="rec_form" >
+                    <p>
+                        <h7>Company Name</h7>
+                        <input class="cname-input" type="text" required></p>
+                
+                    <p>
+                        <h7>Job Type</h7>
+                        <input class="jtype-input" type="text" required></p>
+                </div>
+
                 <centre>
                     <div class='row'>
-                      <button type='submit' name='btn_signup' class='col s12 btn btn-large waves-effect indigo'>Create account</button>
+                      <button type='submit' name='btn_signup' class='col s12 btn btn-large waves-effect indigo' onclick="signup()">Create account</button>
                     </div>
                   </centre>
               </form>
@@ -39,4 +85,5 @@
             
                
     </div>
+
 {% endblock %}

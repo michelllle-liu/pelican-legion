@@ -19,4 +19,13 @@ async function main(){
     loadTable(users);
 }
 
+async function loadSignUpForm(){
+    if(document.getElementById('option1').checked == true) {   
+        console.log("ps");   
+} else {  
+       console.log("rec");   
+}  
+
+}
+
 main();
