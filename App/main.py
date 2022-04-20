@@ -11,6 +11,7 @@ from werkzeug.utils import secure_filename
 from werkzeug.datastructures import  FileStorage
 from datetime import timedelta
 
+from App.forms import LogIn
 
 from App.database import init_db, get_migrate
 
@@ -83,9 +84,10 @@ jwt = JWT(app, authenticate, identity)    # auto creates /auth route
 def index():
     return render_template('index.html')
 
-@app.route('/login')
+@app.route('/login', methods=['GET'])
 def login():
-    return render_template('login.html')
+    form = LogIn()
+    return render_template('login.html', form=form)
 
 @app.route('/signup')
 def show_signup():
