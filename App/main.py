@@ -115,6 +115,14 @@ def signup():
     return 'user created'
 
 @app.route('/dashboard')
-@jwt_required()
-def dashboard():
+# @jwt_required()
+def show_dashboard():
     return render_template('dashboard.html')
+
+@app.route('/alumni')
+def show_alumni():
+    return render_template('alumni.html')
+
+@app.route('/jobs')
+def show_jobs():
+    return render_template('jobs.html')
