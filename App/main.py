@@ -11,7 +11,7 @@ from werkzeug.utils import secure_filename
 from werkzeug.datastructures import  FileStorage
 from datetime import timedelta
 
-from App.forms import LogIn
+from App.forms import LogIn, SignUp
 
 from App.database import init_db, get_migrate
 
@@ -91,7 +91,8 @@ def login():
 
 @app.route('/signup')
 def show_signup():
-    return render_template('signup.html')
+    form = SignUp()
+    return render_template('signup.html', form=form)
 
 @app.route('/signup', methods=['POST'])
 def signup():
