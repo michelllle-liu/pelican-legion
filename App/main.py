@@ -1,6 +1,3 @@
-#hello 
-#hello again
-#TESTING 123
 import os
 from flask import Flask, request, render_template, redirect, flash, url_for
 from flask_jwt import JWT, jwt_required, current_identity
@@ -92,6 +89,19 @@ def login():
     form = LogIn()
     return render_template('login.html', form=form)
 
+@app.route('/login', methods=['POST'])
+def loginAction():
+    form = LogIn()
+    if form.validate_on_submit():
+        data = request.form
+        user = User.query.filter_by(username = data['username'].first())
+        if user and user.check_password(data['password']):
+            flash('Logged in successfully.')
+            login_user(user)
+            return redirect(url_for('index'))
+    flash('Invalid credentials.')
+    return redirect(url_for('login'))
+
 @app.route('/signup', methods=['GET'])
 def show_signup():
     form = SignUp()
@@ -129,3 +139,5 @@ def signupAction():
 @jwt_required()
 def dashboard():
     return render_template('dashboard.html')
+
+app.run(host='0.0.0.0', port=8080, debug=False)
