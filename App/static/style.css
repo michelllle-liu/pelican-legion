@@ -193,19 +193,7 @@ opacity: 0.9;
 cursor: pointer;
 }
 
-.column img:hover {
-opacity: 1;
-}
 
-
-
-img { 
-  width: 250px; 
-  padding: 10px; 
-  height: auto;
-  background-color: rgb(164, 211, 215);
-
-}
 
 figcaption {
   width: 150px; 
