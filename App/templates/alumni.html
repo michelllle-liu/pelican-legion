@@ -1,3 +1,194 @@
 {% extends "navbar2.html" %}
 
 {{ super() }}
+
+{% block links %}
+
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+.gallery-container{
+    max-width: 1700px;
+    height: 700px; 
+    margin: auto; 
+    top: 50px; 
+    padding: 20px; 
+    background-color: rgba(127, 255, 212, 0.155);
+
+}
+
+.gallery{
+    max-width: 1600px; 
+    background-color: rgba(14, 102, 105, 0.507);
+    height: fit-content; 
+    padding:5px; 
+    outline:auto cadetblue;
+    outline-offset: 5px; 
+}
+
+.row{
+    border: 3px groove gray;
+    max-width: 100%; 
+    height: fit-content; 
+    margin:auto;
+    padding: 2px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+figure { 
+    padding: 10px;
+    float: left;
+    height: fit-content;
+    margin-left: auto; 
+    margin-right: auto;
+    background-color: rgb(164, 211, 215);
+    margin: 15px 10px;
+    
+    
+
+}
+
+.column {
+   
+    width: 25%; 
+    column-gap: 40px; 
+    width: 25%;
+    float: left; 
+    padding-left: 20px;
+}
+
+img { 
+    width: 250px; 
+    padding: 20px; 
+    height: auto;
+    background-color: rgb(164, 211, 215);
+
+}
+
+figcaption {
+    width: 200px; 
+    color:rgb(17, 30, 60);
+    font-size: large;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-left:auto;
+    margin-right: auto;
+    
+}
+
+h4 {
+    color: black;
+}
+
+
+
+
+
+</style>
+
+<head>
+    <div id="navBar">
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/alumni">Alumni</a></li>
+            <li><a href="">Friends</a></li>
+            <li><a href="/jobs">Job Board</a></li>
+        </ul>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="/">Log Out</a></li>
+        </ul>
+        <br>
+       </div>
+</head>
+
+<body>
+   <div class="gallery-container">
+    <h4>Alumni:</h4>
+       <div class="gallery">
+           
+            <div class="row">
+                <div class = "column">
+                        <figure>
+                            <img src="https://avatars.sched.co/7/43/5091711/avatar.jpg?cdc" id="profile1">
+                            <figcaption>NickyBoy</figcaption>
+                        </figure>
+                </div>
+
+                <div class = "column">
+                    <figure>
+                        <img src="https://avatars.sched.co/7/43/5091711/avatar.jpg?cdc" id="profile1">
+                        <figcaption>NickyBoy</figcaption>
+                    </figure>
+                </div>
+
+                <div class = "column">
+                    <figure>
+                        <img src="https://avatars.sched.co/7/43/5091711/avatar.jpg?cdc" id="profile1">
+                        <figcaption>NickyBoy</figcaption>
+                    </figure>
+                </div>
+
+                <div class = "column">
+                    <figure>
+                        <img src="https://avatars.sched.co/7/43/5091711/avatar.jpg?cdc" id="profile1">
+                        <figcaption>NickyBoy</figcaption>
+                    </figure>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class = "column">
+                    <figure>
+                        <img src="https://avatars.sched.co/7/43/5091711/avatar.jpg?cdc" id="profile1">
+                        <figcaption>NickyBoy</figcaption>
+                    </figure>
+            </div>
+
+            <div class = "column">
+                <figure>
+                    <img src="https://avatars.sched.co/7/43/5091711/avatar.jpg?cdc" id="profile1">
+                    <figcaption>NickyBoy</figcaption>
+                </figure>
+            </div>
+
+            <div class = "column">
+                <figure>
+                    <img src="https://avatars.sched.co/7/43/5091711/avatar.jpg?cdc" id="profile1">
+                    <figcaption>NickyBoy</figcaption>
+                </figure>
+            </div>
+
+            <div class = "column">
+                <figure>
+                    <img src="https://avatars.sched.co/7/43/5091711/avatar.jpg?cdc" id="profile1">
+                    <figcaption>NickyBoy</figcaption>
+                </figure>
+            </div>
+
+            </div>
+       </div>
+    </div>
+
+
+
+
+
+
+
+
+
+   </div>
+
+
+</body>
+
+
+
+{% endblock %}
