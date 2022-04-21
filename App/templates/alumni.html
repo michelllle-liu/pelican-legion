@@ -1,102 +1,38 @@
+<!--ALUMNI: 4 COLUMNS PER ROW-->
 {% extends "navbar2.html" %}
 
 {{ super() }}
 
 {% block links %}
 
-<style>
+<style>                                     
 
 * {
   box-sizing: border-box;
 }
 
-.gallery-container{
-    max-width: 1700px;
-    height: 700px; 
-    margin: auto; 
-    top: 50px; 
-    padding: 20px; 
-    background-color: rgba(127, 255, 212, 0.155);
+button {                                                         
+  color: rgb(19, 214, 244);
+  background-color: rgb(6, 69, 111);
+  margin-left: 70%;
+  margin-top: 1%;
+  position: relative;
+  padding: 5px;
+  border: none;
+ 
 
 }
 
-.gallery{
-    max-width: 1600px; 
-    background-color: rgba(14, 102, 105, 0.507);
-    height: fit-content; 
-    padding:5px; 
-    outline:auto cadetblue;
-    outline-offset: 5px; 
+button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
-
-.row{
-    border: 3px groove gray;
-    max-width: 100%; 
-    height: fit-content; 
-    margin:auto;
-    padding: 2px;
-}
-
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-figure { 
-    padding: 10px;
-    float: left;
-    height: fit-content;
-    margin-left: auto; 
-    margin-right: auto;
-    background-color: rgb(164, 211, 215);
-    margin: 15px 10px;
-    
-    
-
-}
-
-.column {
-   
-    width: 25%; 
-    column-gap: 40px; 
-    width: 25%;
-    float: left; 
-    padding-left: 20px;
-}
-
-img { 
-    width: 250px; 
-    padding: 20px; 
-    height: auto;
-    background-color: rgb(164, 211, 215);
-
-}
-
-figcaption {
-    width: 200px; 
-    color:rgb(17, 30, 60);
-    font-size: large;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    margin-left:auto;
-    margin-right: auto;
-    
-}
-
-h4 {
-    color: black;
-}
-
-
-
-
-
 </style>
+
 
 <head>
     <div id="navBar">
         <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/dashboard">Profile</a></li>
             <li><a href="/alumni">Alumni</a></li>
             <li><a href="">Friends</a></li>
             <li><a href="/jobs">Job Board</a></li>
@@ -107,38 +43,45 @@ h4 {
         <br>
        </div>
 </head>
-
+  
 <body>
+      <!--INSERT CONTENT UNDER CLASS: "FIGURE"-->  
+       <!--"VIEW DETAILS BUTTON AVAILABLE - onclick attribute can be filled out"--> 
    <div class="gallery-container">
-    <h4>Alumni:</h4>
+    <h4>Discover UWI Alumni:</h4>
        <div class="gallery">
            
             <div class="row">
                 <div class = "column">
-                        <figure>
+                      
+                    <figure>        
                             <img src="https://avatars.sched.co/7/43/5091711/avatar.jpg?cdc" id="profile1">
-                            <figcaption>NickyBoy</figcaption>
+                            <figcaption>Nicky Boy</figcaption>
+                            <button type="button" onclick="">View Details</button>           <!--button to json dump profile data?-->
                         </figure>
                 </div>
 
                 <div class = "column">
                     <figure>
                         <img src="https://avatars.sched.co/7/43/5091711/avatar.jpg?cdc" id="profile1">
-                        <figcaption>NickyBoy</figcaption>
+                        <figcaption>Nicky Boy</figcaption>
+                        <button type="button" onclick="">View Details</button>
                     </figure>
                 </div>
 
                 <div class = "column">
                     <figure>
                         <img src="https://avatars.sched.co/7/43/5091711/avatar.jpg?cdc" id="profile1">
-                        <figcaption>NickyBoy</figcaption>
+                        <figcaption>Nicky Boy</figcaption>
+                        <button type="button" onclick="">View Details</button>
                     </figure>
                 </div>
 
                 <div class = "column">
                     <figure>
                         <img src="https://avatars.sched.co/7/43/5091711/avatar.jpg?cdc" id="profile1">
-                        <figcaption>NickyBoy</figcaption>
+                        <figcaption>Nicky Boy</figcaption>
+                            <button type="button" onclick="">View Details</button>
                     </figure>
                 </div>
             </div>
@@ -147,28 +90,32 @@ h4 {
                 <div class = "column">
                     <figure>
                         <img src="https://avatars.sched.co/7/43/5091711/avatar.jpg?cdc" id="profile1">
-                        <figcaption>NickyBoy</figcaption>
+                        <figcaption>Nicky Boy</figcaption>
+                            <button type="button" onclick="">View Details</button>
                     </figure>
             </div>
 
             <div class = "column">
                 <figure>
                     <img src="https://avatars.sched.co/7/43/5091711/avatar.jpg?cdc" id="profile1">
-                    <figcaption>NickyBoy</figcaption>
+                    <figcaption>Nicky Boy</figcaption>
+                            <button type="button" onclick="">View Details</button>
                 </figure>
             </div>
 
             <div class = "column">
                 <figure>
                     <img src="https://avatars.sched.co/7/43/5091711/avatar.jpg?cdc" id="profile1">
-                    <figcaption>NickyBoy</figcaption>
+                    <figcaption>Nicky Boy</figcaption>
+                    <button type="button" onclick="">View Details</button>
                 </figure>
             </div>
 
             <div class = "column">
                 <figure>
                     <img src="https://avatars.sched.co/7/43/5091711/avatar.jpg?cdc" id="profile1">
-                    <figcaption>NickyBoy</figcaption>
+                    <figcaption>Nicky Boy</figcaption>
+                            <button type="button" onclick="">View Details</button>
                 </figure>
             </div>
 
