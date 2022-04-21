@@ -1,16 +1,15 @@
-#hello 
-#hello again
-#TESTING 123
 import os
-from flask import Flask, render_template
+from flask import Flask, request, render_template, redirect, flash, url_for
 from flask_jwt import JWT, jwt_required, current_identity
-from flask_login import LoginManager, current_user
+from flask_login import LoginManager, current_user, login_user, login_required
 from flask_uploads import DOCUMENTS, IMAGES, TEXT, UploadSet, configure_uploads
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
 from werkzeug.datastructures import  FileStorage
 from datetime import timedelta
 
+from App.models.user import db, User
+from App.forms import LogIn, SignUp
 
 from App.database import init_db, get_migrate
 
@@ -46,6 +45,13 @@ def loadConfig(app, config):
     for key, value in config.items():
         app.config[key] = config[key]
 
+'''Begin Flask Login Functions'''
+login_manager = LoginManager()
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(user_id)
+'''End Flask Login Functions'''
+
 def create_app(config={}):
     app = Flask(__name__, static_url_path='/static')
     CORS(app)
@@ -57,6 +63,7 @@ def create_app(config={}):
     photos = UploadSet('photos', TEXT + DOCUMENTS + IMAGES)
     configure_uploads(app, photos)
     add_views(app, views)
+    login_manager.init_app(app)
     init_db(app)
     setup_jwt(app)
     app.app_context().push()
@@ -64,6 +71,8 @@ def create_app(config={}):
 
 app = create_app()
 migrate = get_migrate(app)
+
+db.create_all(app=app)
 
 ''' Set up JWT here '''
 
@@ -83,40 +92,60 @@ jwt = JWT(app, authenticate, identity)    # auto creates /auth route
 def index():
     return render_template('index.html')
 
-@app.route('/login')
+@app.route('/login', methods=['GET'])
 def login():
-    return render_template('login.html')
+    form = LogIn()
+    return render_template('login.html', form=form)
 
-@app.route('/signup')
+@app.route('/login', methods=['POST'])
+def loginAction():
+    form = LogIn()
+    if form.validate_on_submit():
+        data = request.form
+        user = User.query.filter_by(username = data['username']).first()
+        if user and user.check_password(data['password']):
+            flash('Logged in successfully.')
+            login_user(user)
+            return redirect(url_for('dashboard'))
+    flash('Invalid credentials.')
+    return redirect(url_for('login'))
+
+@app.route('/signup', methods=['GET'])
 def show_signup():
-    return render_template('signup.html')
+    form = SignUp()
+    return render_template('signup.html', form=form)
 
 @app.route('/signup', methods=['POST'])
-def signup():
-    user_data = request.get_json()    # receives new user data from the post request, i.e. the body
+def signupAction():
+    form = SignUp()
+    if form.validate_on_submit():
+        user_data = request.form
 
-    # checking if user already exists
+        # checking if user already exists
 
-    old_user = User.query.filter_by(username=user_data['username']).first()
+        old_user = User.query.filter_by(username=user_data['username']).first()
 
-    if not old_user:
-        old_user = User.query.filter_by(email=user_data['email']).first()
+        if not old_user:
+            old_user = User.query.filter_by(email=user_data['email']).first()
   
-    if old_user:
-        return 'username or email already exists'
+        if old_user:
+            flash('This username or email is already in use')
+            return redirect(url_for('show_signup'))
   
-    # if username or email does not already exist
-    new_user = User(username=user_data['username'], email=user_data['email'])
-    new_user.set_password(user_data['password'])    # hashing password
+        # if username or email does not already exist
+        new_user = User(firstName=user_data['firstName'], lastName=user_data['lastName'], username=user_data['username'], email=user_data['email'], password=user_data['password'])
+        # new_user.set_password(user_data['password'])    # hashing password
 
-    db.session.add(new_user)
-    db.session.commit()
-
-    return 'user created'
+        db.session.add(new_user)
+        db.session.commit()
+        flash('Account created!')
+        return redirect(url_for('login'))
+    flash('Error: Invalid input')
+    return redirect(url_for('show_signup'))
 
 @app.route('/dashboard')
-# @jwt_required()
-def show_dashboard():
+@login_required
+def dashboard():
     return render_template('dashboard.html')
 
 @app.route('/alumni')
@@ -126,3 +155,6 @@ def show_alumni():
 @app.route('/jobs')
 def show_jobs():
     return render_template('jobs.html')
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=8080)

@@ -1,9 +1,10 @@
 from werkzeug.security import check_password_hash, generate_password_hash
 from App.database import db
+from flask_login import UserMixin
 
-class User(db.Model):
-    userID = db.Column(db.Integer, primary_key=True)
-    username =  db.Column(db.String, nullable=False)
+class User(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    username =  db.Column(db.String, unique=True, nullable=False)
     password = db.Column(db.String(120), nullable=False)
     firstName= db.Column(db.String(30), unique=False, nullable=False)
     lastName= db.Column(db.String(30), unique=False, nullable=False) 
@@ -18,7 +19,7 @@ class User(db.Model):
 
     def toDict(self):
         return{
-            'userID': self.userID,
+            'id': self.id,
             'username': self.username,
             'firstName': self.firstName,
             'lastName':self.lastName,
@@ -35,7 +36,7 @@ class User(db.Model):
 
 class Alumni (db.Model):
     alumniID= db.Column('alumniID', db.Integer, primary_key=True)
-    userID= db.Column('userID', db.Integer, db.ForeignKey('user.userID')) 
+    userID= db.Column('userID', db.Integer, db.ForeignKey('user.id')) 
     gradYear= db.Column(db.Integer, unique=False, nullable=False)    
     programme= db.Column(db.String(60), unique=False, nullable=False)
     department= db.Column(db.String(60), unique=False, nullable=False)
@@ -52,7 +53,7 @@ class Alumni (db.Model):
 
 class GeneralUser (db.Model):
     generalUserID= db.Column('generalUserID', db.Integer, primary_key=True)
-    userID= db.Column('userID', db.Integer, db.ForeignKey('user.userID')) 
+    userID= db.Column('userID', db.Integer, db.ForeignKey('user.id')) 
     company= db.Column (db.String(80), unique=False, nullable=True) 
 
     def toDict(self):
@@ -65,7 +66,7 @@ class ProfilePicture (db.Model):
     picID=db.Column(db.Integer, primary_key=True)
     filename= db.Column(db.String, nullable=False)
     url=db.Column(db.String, nullable=False)
-    userID= db.Column('userID', db.Integer, db.ForeignKey('user.userID'))
+    userID= db.Column('userID', db.Integer, db.ForeignKey('user.id'))
 
     def __init__(self, filename, url):
         self.filename=filename
@@ -73,7 +74,7 @@ class ProfilePicture (db.Model):
 
 class Friend (db.Model):
     friendID=db.Column(db.Integer, primary_key=True)
-    userID= db.Column('userID', db.Integer, db.ForeignKey('user.userID'))   
+    userID= db.Column('userID', db.Integer, db.ForeignKey('user.id'))   
     friendUID= db.Column(db.Integer, nullable=False) 
 
     def toDict(self):
@@ -95,7 +96,7 @@ class JobSpec (db.Model):
 
 class Job (db.Model):
     jobID=db.Column(db.Integer, primary_key=True)
-    userID= db.Column('userID', db.Integer, db.ForeignKey('user.userID'))
+    userID= db.Column('userID', db.Integer, db.ForeignKey('user.id'))
     description= db.Column(db.String, nullable=True)
     link= db.Column(db.String, nullable=True)
     applicationDeadline= db.Column(db.DateTime, nullable=False)
