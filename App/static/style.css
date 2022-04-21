@@ -118,3 +118,22 @@ img {vertical-align: middle;}
 
 /*END OF LANDING PAGE*/
 
+.center-form1{
+  margin: auto;
+  width: 60%;
+  padding: 10px;
+  position: absolute;
+  top: 25%;
+  left: 30%;
+  z-index: 15;
+}
+
+.center-form2{
+  margin: auto;
+  width: 60%;
+  padding: 10px;
+  position: absolute;
+  top: 10%;
+  left: 27%;
+  z-index: 15;
+}
