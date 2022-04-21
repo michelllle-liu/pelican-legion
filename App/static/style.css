@@ -118,3 +118,16 @@ img {vertical-align: middle;}
 
 /*END OF LANDING PAGE*/
 
+
+
+/*START OF JOB BOARD PAGE*/
+
+.job-navbar{
+  padding-bottom:100px;
+}
+
+.card-small {
+  width:400px;
+ }
+
+/*END OF JOB BOARD PAGE*/
