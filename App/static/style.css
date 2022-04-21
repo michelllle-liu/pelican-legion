@@ -140,17 +140,16 @@ img {vertical-align: middle;}
   margin: auto; 
   top: 50px; 
   padding: 20px; 
-  background-color: rgba(127, 255, 212, 0.155);
+  background-color: rgba(127, 255, 212, 0);
 
 }
 
 .gallery{
   max-width: 1600px; 
-  background-color: rgba(14, 102, 105, 0.507);
+  background-color:#0553b2c5;
   height: fit-content; 
   padding:5px; 
-  outline:auto cadetblue;
-  outline-offset: 5px; 
+  border: 3px solid black;
 }
 
 .row{
@@ -173,7 +172,7 @@ figure {
   height: fit-content;
   margin-left:auto ;
   margin-right: auto;
-  background-color: rgb(164, 211, 215);
+  background-color: rgb(164, 208, 247);
   
   
 
@@ -203,7 +202,7 @@ figcaption {
   margin-left:30%;
   margin-right: auto;
   margin-bottom: -13%;
-  background-color: rgb(164, 211, 215);
+  background-color: rgb(164, 208, 247);
   
   
 }
