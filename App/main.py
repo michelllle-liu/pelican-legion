@@ -148,5 +148,13 @@ def signupAction():
 def dashboard():
     return render_template('dashboard.html')
 
+@app.route('/alumni')
+def show_alumni():
+    return render_template('alumni.html')
+
+@app.route('/jobs')
+def show_jobs():
+    return render_template('jobs.html')
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8080)
