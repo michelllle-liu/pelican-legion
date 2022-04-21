@@ -1,7 +1,7 @@
 import os
 from flask import Flask, request, render_template, redirect, flash, url_for
 from flask_jwt import JWT, jwt_required, current_identity
-from flask_login import LoginManager, current_user
+from flask_login import LoginManager, current_user, login_user
 from flask_uploads import DOCUMENTS, IMAGES, TEXT, UploadSet, configure_uploads
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
@@ -45,6 +45,13 @@ def loadConfig(app, config):
     for key, value in config.items():
         app.config[key] = config[key]
 
+'''Begin Flask Login Functions'''
+login_manager = LoginManager()
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(user_id)
+'''End Flask Login Functions'''
+
 def create_app(config={}):
     app = Flask(__name__, static_url_path='/static')
     CORS(app)
@@ -56,6 +63,7 @@ def create_app(config={}):
     photos = UploadSet('photos', TEXT + DOCUMENTS + IMAGES)
     configure_uploads(app, photos)
     add_views(app, views)
+    login_manager.init_app(app)
     init_db(app)
     setup_jwt(app)
     app.app_context().push()
@@ -94,7 +102,7 @@ def loginAction():
     form = LogIn()
     if form.validate_on_submit():
         data = request.form
-        user = User.query.filter_by(username = data['username'].first())
+        user = User.query.filter_by(username = data['username']).first()
         if user and user.check_password(data['password']):
             flash('Logged in successfully.')
             login_user(user)
