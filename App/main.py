@@ -1,7 +1,7 @@
 import os
 from flask import Flask, request, render_template, redirect, flash, url_for
 from flask_jwt import JWT, jwt_required, current_identity
-from flask_login import LoginManager, current_user, login_user
+from flask_login import LoginManager, current_user, login_user, login_required
 from flask_uploads import DOCUMENTS, IMAGES, TEXT, UploadSet, configure_uploads
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
@@ -106,7 +106,7 @@ def loginAction():
         if user and user.check_password(data['password']):
             flash('Logged in successfully.')
             login_user(user)
-            return redirect(url_for('index'))
+            return redirect(url_for('dashboard'))
     flash('Invalid credentials.')
     return redirect(url_for('login'))
 
@@ -144,7 +144,7 @@ def signupAction():
     return redirect(url_for('show_signup'))
 
 @app.route('/dashboard')
-@jwt_required()
+@login_required
 def dashboard():
     return render_template('dashboard.html')
 
