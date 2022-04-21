@@ -98,9 +98,9 @@ def loginAction():
         if user and user.check_password(data['password']):
             flash('Logged in successfully.')
             login_user(user)
-            return redirect(url_for('index'))
+            return redirect('/')
     flash('Invalid credentials.')
-    return redirect(url_for('login'))
+    return redirect('/login')
 
 @app.route('/signup', methods=['GET'])
 def show_signup():
@@ -122,7 +122,7 @@ def signupAction():
   
         if old_user:
             flash('This username or email is already in use')
-            return redirect(url_for('show_signup'))
+            return redirect('/signup')
   
         # if username or email does not already exist
         new_user = User(firstName=user_data['firstName'], lastName=user_data['lastName'], username=user_data['username'], email=user_data['email'], password=user_data['password'])
@@ -131,13 +131,11 @@ def signupAction():
         db.session.add(new_user)
         db.session.commit()
         flash('Account created!')
-        return redirect(url_for('login'))
+        return redirect('/login')
     flash('Error: Invalid input')
-    return redirect(url_for('show_signup'))
+    return redirect('/signup')
 
 @app.route('/dashboard')
 @jwt_required()
 def dashboard():
     return render_template('dashboard.html')
-
-app.run(host='0.0.0.0', port=8080, debug=False)
