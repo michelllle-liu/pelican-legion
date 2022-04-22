@@ -1,0 +1,54 @@
+{% extends "navbar1.html" %}
+
+{{ super() }}
+
+{% block content %}
+
+<div class="container valign-wrapper">
+    <div class="card" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+ 
+
+        <form class="signup-container" method="POST" action="/createJob">
+            <h5>Please enter Job Details</h5>
+            <br>
+            <div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="job_name" name="job_name" type="text" class="validate">
+                        <label for="job_name" style="background-color:none;">Job Name</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="user_id" name="user_id" type="text" class="validate">
+                        <label for="user_id" style="background-color:none;">User ID</label>
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+                    <div class="input-field col s12">
+                      <textarea id="description" name="description" class="materialize-textarea" data-length="1000"></textarea>
+                      <label for="description">Please enter description</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="appDl" name="appDl" type="text" class="datepicker">
+                        <label for="appDl" style="background-color:none;">Application Deadline</label>
+                    </div>
+                </div>
+
+                
+                <a class="waves-effect waves-light btn" style="margin: 32px 0px 32px 0px;">Submit</a>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+{% endblock %}

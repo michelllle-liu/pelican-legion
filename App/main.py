@@ -156,5 +156,9 @@ def show_alumni():
 def show_jobs():
     return render_template('jobs.html')
 
+@app.route('/newjob')
+def show_jobform():
+    return render_template('newjob.html')
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8080)
