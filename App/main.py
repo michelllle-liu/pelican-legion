@@ -146,7 +146,7 @@ def signupAction():
 @app.route('/dashboard', methods=['GET'])
 @login_required
 def dashboard():
-    return render_template('dashboard.html')
+    return render_template('dashboard.html', current_user=current_user)
 
 @app.route('/alumni')
 def show_alumni():
