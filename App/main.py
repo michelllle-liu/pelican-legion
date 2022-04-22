@@ -8,7 +8,7 @@ from werkzeug.utils import secure_filename
 from werkzeug.datastructures import  FileStorage
 from datetime import timedelta
 
-from App.models.user import db, User
+from App.models.user import db, User, Alumni
 from App.forms import LogIn, SignUp, AlumnusInfo
 
 from App.database import init_db, get_migrate
@@ -146,7 +146,12 @@ def signupAction():
 @app.route('/dashboard', methods=['GET'])
 @login_required
 def dashboard():
-    return render_template('dashboard.html', current_user=current_user)
+    alumnus_info = Alumni.query.filter_by(userID=current_user.id).first()
+
+    if not alumnus_info:
+        alumnus_info = {}
+
+    return render_template('dashboard.html', current_user=current_user, alumnus_info=alumnus_info)
 
 @app.route('/alumni')
 def show_alumni():
