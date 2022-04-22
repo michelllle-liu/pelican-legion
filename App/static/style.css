@@ -1,5 +1,5 @@
-nav{
-    color: #0471a6;
+.container{
+  padding-top: 40px;
 }
 
 /*START OF LANDING PAGE */
@@ -131,3 +131,25 @@ img {vertical-align: middle;}
  }
 
 /*END OF JOB BOARD PAGE*/
+
+/*START OF DASHBOARD*/
+.content-container{
+  display: flex;
+  flex-direction: column;
+}
+
+.header{
+  font-size: 30px;
+  padding-bottom: 15px;
+}
+
+.section{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.edit-btn{
+  margin-top: 50px;
+  width: 25%;
+}
