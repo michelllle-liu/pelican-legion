@@ -1,3 +1,48 @@
 {% extends "navbar2.html" %}
 
 {{ super() }}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <form class="col s12">
+                {{form.hidden_tag()}}
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        {{form.gradYear}}
+                        {{form.gradYear.label}}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        {{form.faculty.label}}
+                        {{form.faculty}}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        {{form.department.label}}
+                        {{form.department}}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        {{form.programme.label}}
+                        {{form.programme}}
+                    </div>
+                </div>
+
+                <centre>
+                    <div class='row'>
+                        {{form.save}}
+                    </div>
+                </centre>
+                    
+            </form>
+        </div>
+    </div>
+{% endblock %}
