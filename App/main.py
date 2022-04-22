@@ -9,7 +9,7 @@ from werkzeug.datastructures import  FileStorage
 from datetime import timedelta
 
 from App.models.user import db, User
-from App.forms import LogIn, SignUp
+from App.forms import LogIn, SignUp, AlumnusInfo
 
 from App.database import init_db, get_migrate
 
@@ -143,10 +143,11 @@ def signupAction():
     flash('Error: Invalid input')
     return redirect(url_for('show_signup'))
 
-@app.route('/dashboard')
+@app.route('/dashboard', methods=['GET'])
 @login_required
 def dashboard():
-    return render_template('dashboard.html')
+    form = AlumnusInfo()
+    return render_template('dashboard.html', form=form)
 
 @app.route('/alumni')
 def show_alumni():
