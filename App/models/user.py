@@ -9,21 +9,13 @@ class User(db.Model, UserMixin):
     firstName= db.Column(db.String(30), unique=False, nullable=False)
     lastName= db.Column(db.String(30), unique=False, nullable=False) 
     email= db.Column(db.String(40), unique=True, nullable=False)
-    gradYear= db.Column(db.Integer, unique=False, nullable=True)
-    faculty= db.Column(db.String(60), unique=False, nullable=True)
-    department= db.Column(db.String(60), unique=False, nullable=True)
-    programme= db.Column(db.String(60), unique=False, nullable=True)
 
-    def __init__(self, username, password, firstName, lastName, email, gradYear, faculty, department, programme):
+    def __init__(self, username, password, firstName, lastName, email):
         self.username = username
         self.set_password(password)
         self.firstName=firstName
         self.lastName= lastName
         self.email=email
-        self.gradYear=gradYear
-        self.faculty=faculty
-        self.department=department
-        self.programme=programme
 
     def toDict(self):
         return{
@@ -32,10 +24,6 @@ class User(db.Model, UserMixin):
             'firstName' : self.firstName,
             'lastName' :self.lastName,
             'email' :self.email,
-            'gradYear' : self.gradYear,
-            'faculty' : self.faculty,
-            'department' : self.department,
-            'programme' : self.programme
         }
 
     def set_password(self, password):
