@@ -22,7 +22,7 @@
                 Last Name
             </div>
             <div class="value">
-                {{current_user.lastName}
+                {{current_user.lastName}}
             </div>
         </div>
 
@@ -40,7 +40,11 @@
                 Graduation Year
             </div>
             <div class="value">
-                2019
+                {% if 'gradYear' in alumnus_info %}
+                    {{alumnus_info.gradYear}}
+                {% else %}
+                    N/A
+                {% endif %}
             </div>
         </div>
 
@@ -49,7 +53,11 @@
                 Faculty
             </div>
             <div class="value">
-                Faculty of Science and Technology
+                {% if 'faculty' in alumnus_info %}
+                    {{alumnus_info.faculty}}
+                {% else %}
+                    N/A
+                {% endif %}
             </div>
         </div>
 
@@ -58,7 +66,11 @@
                 Department
             </div>
             <div class="value">
-                Department of Computing and IT
+                {% if 'department' in alumnus_info %}
+                    {{alumnus_info.department}}
+                {% else %}
+                    N/A
+                {% endif %}
             </div>
         </div>
 
@@ -67,7 +79,11 @@
                 Programme
             </div>
             <div class="value">
-                BSc Computer Science (Special)
+                {% if 'programme' in alumnus_info %}
+                    {{alumnus_info.programme}}
+                {% else %}
+                    N/A
+                {% endif %}
             </div>
         </div>
 
