@@ -136,10 +136,10 @@ img {vertical-align: middle;}
 /* START OF ALUMNI PAGE */
 .gallery-container{
   max-width: 1700px;
-  height: 700px; 
+  height: fit-content; 
   margin: auto; 
   top: 50px; 
-  padding: 20px; 
+  padding: 10px; 
   background-color: rgba(127, 255, 212, 0);
 
 }
