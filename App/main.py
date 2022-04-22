@@ -156,11 +156,10 @@ def show_alumni():
 def show_jobs():
     return render_template('jobs.html')
 
-@app.route('/addjob')
+@app.route('/addjob')               #added form to get new job to board
 def show_jobform():
     form = NewJob()
     return render_template('newjob.html', form=form)
-
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8080)
