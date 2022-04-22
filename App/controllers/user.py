@@ -1,4 +1,4 @@
-from App.models import User #, Alumni, GeneralUser, Friend, Job
+from App.models import User , Alumni  #, GeneralUser, Friend, Job
 from App.database import db
 
 def get_all_users():
@@ -15,3 +15,16 @@ def get_all_users_json():
         return []
     users = [user.toDict() for user in users]
     return users
+
+def delete_user(id):
+    user= User.query.filter_by(id=id).first()
+    if not user:
+        return ('Error deleting user :(')
+    
+    alumni= Alumni.query.filter_by(userID=id).first()
+    if alumni: 
+        db.session.delete(alumni)
+
+    db.session.delete(user)
+    db.session.commit()
+    return ("User deleted!")

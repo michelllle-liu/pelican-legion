@@ -9,10 +9,10 @@ def create_alumni (userID, gradYear, programme, department, faculty):
 def delete_alumni (userID):
     alumni= Alumni.query.filter_by(userID=userID).first()
     if not alumni:
-        return (f"No alumni with userID {userID} exists")
+        return -1
     db.session.delete(alumni)
     db.session.commit()
-    return (f"Alumni with userID {userID} deleted!")
+    return 0
 
 def get_all_alumni():
     return Alumni.query.all()
