@@ -146,8 +146,7 @@ def signupAction():
 @app.route('/dashboard', methods=['GET'])
 @login_required
 def dashboard():
-    form = AlumnusInfo()
-    return render_template('dashboard.html', form=form)
+    return render_template('dashboard.html')
 
 @app.route('/alumni')
 def show_alumni():
@@ -156,6 +155,11 @@ def show_alumni():
 @app.route('/jobs')
 def show_jobs():
     return render_template('jobs.html')
+
+@app.route('/editProfile')
+def editProfile():
+    form = AlumnusInfo()
+    return render_template('editProfile.html', form=form)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8080)
