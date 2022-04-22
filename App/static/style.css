@@ -149,6 +149,10 @@ img {vertical-align: middle;}
   justify-content: space-between;
 }
 
+.label{
+  font-weight: bold;
+}
+
 .edit-btn{
   margin-top: 50px;
   width: 25%;
