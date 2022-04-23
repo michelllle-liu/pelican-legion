@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, TextAreaField, SubmitField, RadioField, DateField, IntegerField, SelectField
+from wtforms import StringField, PasswordField, BooleanField, TextAreaField, SubmitField, DateField, IntegerField
 from wtforms.validators import InputRequired, NumberRange, EqualTo, Email
 
 class SignUp(FlaskForm):
@@ -18,7 +18,7 @@ class LogIn(FlaskForm):
     
 class NewJob(FlaskForm):
     JobTitle = StringField('Job Title', validators=[InputRequired()])
-    JobDescrip = StringField('Job Description') 
+    JobDescrip = TextAreaField('Job Description', render_kw={'class' : 'materialize-textarea'}) 
     appDeadline = DateField('Deadline for Application')
     add = SubmitField('Add Job', render_kw={'type' : 'submit', 'class' : 'col s12 btn btn-large waves-effect waves-light indigo'})
 
