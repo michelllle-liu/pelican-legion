@@ -1,3 +1,77 @@
 {% extends "navbar2.html" %}
 
 {{ super() }}
+
+
+{% block content %}
+
+<style>
+summary {
+  color:rgb(9, 134, 179);
+}
+
+
+
+</style>
+
+<div class="header">
+    Job Board
+</div>
+
+<a href="/addjob" class="waves-effect waves-light indigo btn">Add New Job Listing +</a>
+
+<div class="row" col-span="2" id="job-listings">
+
+    
+    <table id="jobsTable">
+        <thead>
+          <tr>
+              <th></th>
+              <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% if jobs == [] %}
+          <tr>
+            <td>No jobs available :(</td>
+            <td></td>
+          </tr>
+          {% else %}
+            {% for job in jobs %}
+            <tr>
+              <td text-align="left">
+                <h5>{{job.title}}</h5>
+                <details>
+                  <summary style="font-size: large">View Details</summary>
+                  <p>{{job.description}}</p>
+                  <p>Application Deadline: {{job.deadline}}</p>
+                </details>
+              </td>
+              <td>
+                {% if current_user.id == job.userID %}
+                  <a href="{{url_for('delete_job', jobID=job.jobID)}}" class="waves-effect waves-light indigo btn">Delete</a>
+                {% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+          {% endif %}
+        </tbody>
+      </table>
+
+</div>
+
+<script>
+
+
+
+  
+</script>
+
+
+
+
+
+
+
+{% endblock %}

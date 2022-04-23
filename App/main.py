@@ -1,17 +1,17 @@
 import os
 from flask import Flask, request, render_template, redirect, flash, url_for
 from flask_jwt import JWT, jwt_required, current_identity
-from flask_login import LoginManager, current_user, login_user, login_required
+from flask_login import LoginManager, current_user, login_user, login_required, logout_user
 from flask_uploads import DOCUMENTS, IMAGES, TEXT, UploadSet, configure_uploads
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
 from werkzeug.datastructures import  FileStorage
-from datetime import timedelta
+from datetime import timedelta, datetime
 
-from App.models.user import db, User
-from App.forms import LogIn, SignUp
+from App.models.user import db, User, Alumni, Job, JobSpec
+from App.forms import LogIn, SignUp, AlumnusInfo, NewJob
 
-from App.database import init_db, get_migrate
+from App.database import init_db, create_db, get_migrate
 
 from App.controllers import (
     setup_jwt
@@ -63,16 +63,16 @@ def create_app(config={}):
     photos = UploadSet('photos', TEXT + DOCUMENTS + IMAGES)
     configure_uploads(app, photos)
     add_views(app, views)
+    create_db(app)
     login_manager.init_app(app)
-    init_db(app)
     setup_jwt(app)
     app.app_context().push()
     return app
 
 app = create_app()
+db.drop_all()
+db.create_all()
 migrate = get_migrate(app)
-
-db.create_all(app=app)
 
 ''' Set up JWT here '''
 
@@ -110,6 +110,13 @@ def loginAction():
     flash('Invalid credentials.')
     return redirect(url_for('login'))
 
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    flash('You have successfully logged out!')
+    return redirect(url_for('login'))
+
 @app.route('/signup', methods=['GET'])
 def show_signup():
     form = SignUp()
@@ -143,20 +150,98 @@ def signupAction():
     flash('Error: Invalid input')
     return redirect(url_for('show_signup'))
 
-@app.route('/dashboard')
+@app.route('/dashboard', methods=['GET'])
 @login_required
 def dashboard():
-    return render_template('dashboard.html')
+    alumnus_info = Alumni.query.filter_by(userID=current_user.id).first()
+
+    if not alumnus_info:
+        alumnus_info = Alumni(userID=current_user.id, gradYear=None, faculty=None, department=None, programme=None)
+
+    return render_template('dashboard.html', current_user=current_user, alumnus_info=alumnus_info)
 
 """
 @app.route('/alumni')
+@login_required
 def show_alumni():
     return render_template('alumni.html')
 """
 
 @app.route('/jobs')
+@login_required
 def show_jobs():
-    return render_template('jobs.html')
+    jobs = Job.query.all()
+
+    if jobs is None:
+        jobs = []     # if there are no jobs, pass an empty list
+    
+    return render_template('jobs.html', jobs=jobs, current_user=current_user)
+
+@app.route('/jobs/<jobID>', methods=['GET', 'DELETE'])
+@login_required
+def delete_job(jobID):
+    job = Job.query.filter_by(jobID=jobID).first()
+    if job:
+        db.session.delete(job)
+        db.session.commit()
+        flash('Job deleted')
+    return redirect(url_for('show_jobs'))
+
+@app.route('/addjob', methods=['GET'])               #added form to get new job to board
+@login_required
+def show_jobform():
+    form = NewJob()
+    return render_template('newjob.html', form=form)
+
+@app.route('/addjob', methods=['POST'])
+@login_required
+def addJobAction():
+    form = NewJob()
+    data = request.form
+
+    new_job = Job(userID=current_user.id, title=data['title'], description=None, deadline=None)
+
+    if 'description' in data:
+        new_job.description = data['description']
+    if ('deadline' in data) and (data['deadline'] != ''):
+        new_job.deadline = datetime.strptime(data['deadline'], '%Y-%m-%d %H:%M:%S')
+    
+    db.session.add(new_job)
+    db.session.commit()
+    flash('Job has been added to the Job Board!')
+    return redirect(url_for('show_jobs'))
+
+@app.route('/editProfile', methods=['GET'])
+@login_required
+def editProfile():
+    form = AlumnusInfo()
+    alumnus_info = Alumni.query.filter_by(userID=current_user.id).first()
+
+    return render_template('editProfile.html', form=form, alumnus_info=alumnus_info)
+
+@app.route('/editProfile', methods=['POST'])
+@login_required
+def editProfileAction():
+    form = SignUp()
+    data = request.form
+    alumnus_info = Alumni.query.filter_by(userID=current_user.id).first()
+
+    if not alumnus_info:
+        alumnus_info = Alumni(userID=current_user.id, gradYear=None, faculty=None, department=None, programme=None)
+
+    if 'gradYear' in data:
+        alumnus_info.gradYear = data['gradYear']
+    if 'faculty' in data:
+        alumnus_info.faculty = data['faculty']
+    if 'department' in data:
+        alumnus_info.department = data['department']
+    if 'programme' in data:
+        alumnus_info.programme = data['programme']
+
+    db.session.add(alumnus_info)
+    db.session.commit()
+    flash('Your profile has been updated!')
+    return redirect(url_for('dashboard'))
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8080)

@@ -1,5 +1,5 @@
-nav{
-    color: #0471a6;
+.container{
+  padding-top: 40px;
 }
 
 /*START OF LANDING PAGE */
@@ -118,6 +118,23 @@ img {vertical-align: middle;}
 
 /*END OF LANDING PAGE*/
 
+
+
+
+/*START OF JOB BOARD PAGE*/
+
+.job-navbar{
+  padding-bottom:100px;
+}
+
+.card-small {
+  width:400px;
+ }
+
+/*END OF JOB BOARD PAGE*/
+
+
+
 /* START OF ALUMNI PAGE */
 .gallery-container{
   max-width: 1700px;
@@ -158,7 +175,10 @@ figure {
   margin-left:auto ;
   margin-right: auto;
   background-color: rgb(164, 208, 247);
-}
+  
+  
+
+
 
 .column {
  
@@ -196,3 +216,31 @@ h4 {
 }
 
 /*END OF ALUMNI PAGE*/
+
+
+
+/*START OF DASHBOARD*/
+.content-container{
+  display: flex;
+  flex-direction: column;
+}
+
+.header{
+  font-size: 40px;
+  padding-bottom: 15px;
+}
+
+.section{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.label{
+  font-weight: bold;
+}
+
+.edit-btn{
+  margin-top: 50px;
+  width: 25%;
+}

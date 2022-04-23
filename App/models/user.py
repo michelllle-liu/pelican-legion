@@ -20,12 +20,11 @@ class User(db.Model, UserMixin):
 
     def toDict(self):
         return{
-            'id': self.id,
-            'username': self.username,
-            'firstName': self.firstName,
-            'lastName':self.lastName,
-            'email':self.email,
-           # 'alumni': [alumni.toDict() for alumni in self.alumni], 
+            'id' : self.id,
+            'username' : self.username,
+            'firstName' : self.firstName,
+            'lastName' :self.lastName,
+            'email' :self.email,
         }
 
     def set_password(self, password):
@@ -35,4 +34,3 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         """Check hashed password."""
         return check_password_hash(self.password, password)
-

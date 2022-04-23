@@ -3,7 +3,7 @@
 
 {{ super() }}
 
-{% block links %}
+{% block content %}
 
 <style>                                     
 
@@ -22,26 +22,22 @@ img {
 
 }
 
+button {                                                         
+  margin-left: 65%;
+  margin-top: 1%;
+  position: relative;
+  padding: 5px;
+  border: none;
+  font-size:small;
+
+}
+
+button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
 </style>
 
 
-<head>
-    <div id="navBar">
-        <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li><a href="/dashboard">Profile</a></li>
-            <li><a href="/alumni">Alumni</a></li>
-            <li><a href="">Friends</a></li>
-            <li><a href="/jobs">Job Board</a></li>
-        </ul>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="/">Log Out</a></li>
-        </ul>
-        <br>
-    </div>
-</head>
-
-
-  
 <body>
       <!--INSERT CONTENT UNDER CLASS: "FIGURE"-->  
 
@@ -57,7 +53,7 @@ img {
 
        <div class="gallery indigo">
            
-            <div class="row">
+           <div class="gallery row">
 
                 {% block layout %}
                 
@@ -96,5 +92,6 @@ img {
     </div> <!--end of container div-->
 
 </body>
+
 
 {% endblock %}
