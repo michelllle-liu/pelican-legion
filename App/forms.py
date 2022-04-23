@@ -15,6 +15,12 @@ class LogIn(FlaskForm):
     username = StringField('Enter your username', validators=[InputRequired()])
     password = PasswordField('Enter your password', validators=[InputRequired()])
     submit = SubmitField('Login', render_kw={'type' : 'submit', 'class' : 'col s12 btn btn-large waves-effect waves-light indigo'})
+    
+class NewJob(FlaskForm):
+    JobTitle = StringField('Job Title', validators=[InputRequired()])
+    JobDescrip = StringField('Job Description') 
+    appDeadline = DateField('Deadline for Application')
+    add = SubmitField('Add Job', render_kw={'type' : 'submit', 'class' : 'col s12 btn btn-large waves-effect waves-light indigo'})
 
 class AlumnusInfo(FlaskForm):
     gradYear = IntegerField('Graduation Year', validators=[NumberRange(min=1900, max=3000)])

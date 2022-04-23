@@ -5,72 +5,102 @@
 
 {% block content %}
 
+<style>
+summary {
+  color:rgb(9, 134, 179);
+}
+
+
+
+</style>
+
 <div class="job-navbar">
     <nav class="indigo" id="nav-job">
-        <h1 style="text-align:center">Job Board</h1>
+        <h2 style="text-align:center">Job Board</h2>
         <input type="text" placeholder="Search by keyword...">
     </nav>
 </div>
 
+<a href="/addjob" class="waves-effect waves-light indigo btn">Add New Job Listing +</a>
+
 <div class="row" col-span="2" id="job-listings">
 
     
-    <table>
+    <table id="jobsTable">
         <thead>
           <tr>
-              <th colspan="2"></th>
+              <th></th>
+              <th></th>
+              <th></th>
           </tr>
         </thead>
 
         <tbody>
           <tr>
+         
+          </tr>
+
+          <tr>
             <td><img src="https://www.placecage.com/200/300"></td>
-            <td text-align="left">We are looking for an innovative, dedicated engineer who has a broad and general fascination with the engineering 
-                sciences and who follows international engineering trends and technologies. The engineer's responsibilities include defining problems,
-                 researching, interpreting, and applying information, developing solutions, and making decisions.
-                 We expect you to be able to stay up to date with international engineering trends,identify and address problems,
-                 ,supervise production as well as estimating costs and timelines.
-                To be successful as an engineer, you should have a firm understanding of math and science, a deep social, economic, and cultural awareness,
-                 and an enthusiastic fondness for teamwork. Ideal candidates will display an ability to comprehend complex systems, identify the sources of any problems
-                  that arise, and decide on which actions to take to fix them.
-                  <br><br>
-                  <a href="#">Click here for more details</a></td>
+            <td text-align="left">
+              <h5>Construction Worker Wanted (5+ years Experience Required)</h5> 
+              <details>
+                <summary style="font-size:large">View Details</summary>
+                We are looking for an experienced, driven civil engineer with a wealth of industry knowledge. To ensure success, the ideal candidate 
+                should be comfortable splitting their hours between the office, on-site visits, and attending council meetings. 
                 
+                 The civil engineer should be a critical thinker and have sound subject knowledge of mathematics and physics to identify
+                 and solve engineering problems. You must also possess a certain level of creativity in order to present 
+                 innovative solutions and improvements to technical processes. 
+                 
+                 The successful candidate will be able to effectively communicate ideas, make recommendations, and negotiate project details with their team, subcontractors, and clients. You will be expected to develop detailed designs,do feasibility assessments and site inspections, prepare and implement project plans, as well as monitorand optimize safety procedures, production processes, and regulatory compliance.
+            </details>
+              <td><a class="waves-effect waves-light indigo btn">Update</a></td>
           </tr>
 
           <tr>
             <td><img src="https://www.placecage.com/200/300"></td>
-            <td text-align="left">We are looking for an experienced, driven civil engineer with a wealth of industry knowledge. To ensure success, the ideal
-                 candidate should be comfortable splitting their hours between the office, on-site visits, and attending council meetings.
-
-                The civil engineer should be a critical thinker and have sound subject knowledge of mathematics and physics to identify and solve engineering problems.
-                 You must also possess a certain level of creativity in order to present innovative solutions and improvements to technical processes. The successful 
-                 candidate will be able to effectively communicate ideas, make recommendations, and negotiate project details with their team, subcontractors, and clients.
-                You will be expected to develop detailed designs,do feasibility assessments and site inspections, prepare and implement project plans, as well as 
-                monitorand optimize safety procedures, production processes, and regulatory compliance.
-                <br><br>
-                 <a href="#">Click here for more details</a></td>
-            
+            <td text-align="left">
+              <h5>Software Engineer Hiring (No Pay)</h5> 
+              <details>
+                <summary style="font-size:large">View Details</summary>
+                The devloper engineer should be a critical thinker and have sound subject knowledge of mathematics and physics to identify
+                and solve engineering problems. You must also possess a certain level of creativity in order to present 
+                innovative solutions and improvements to technical processes.
+            </details>
+              <td><a class="waves-effect waves-light indigo btn">Update</a></td>
           </tr>
 
           <tr>
             <td><img src="https://www.placecage.com/200/300"></td>
-            <td text-align="left">We are looking for a skilled software engineer who, along with our excellent software development team, will be responsible for working 
-                on projects that are currently being developed on by our company. Duties will include but are not limited to developing and directing software system 
-                validation and testing methods, as well as directing our software programming initiatives. You will also be working closely with clients and 
-                cross-functional departments to communicate project statuses and proposals.
-                You will be involved in developing and directing software system validation and testing methods, directing our software programming initiatives
-                overseeing the development of documentation, working closely with clients and cross-functional departments to communicate project statuses and proposals,
-                and analyzing data to effectively coordinate the installation of new systems or the modification of existing systems.
+            <td text-align="left">
+              <h5>Ease Up Needed Urgently (In BULK)</h5> 
+              <details>
+                <summary style="font-size:large">View Details</summary>
+                Im at my wits end sir please have mercy
+                Somebody call 911 shawdy fire burning on the dancefloor whoa-
 
-                A bachelor's degree in computer science, software engineering, or another related field is required. You will also need at least five to seven years of software engineering or software development experience, preferably in a related field to be successful in this role.
-                <br><br>
-                <a href="#">Click here for more details</a></td>
-            
+              
+            </details>
+              <td><a class="waves-effect waves-light indigo btn">Update</a></td>
           </tr>
 
         </tbody>
       </table>
 
 </div>
+
+<script>
+
+
+
+  
+</script>
+
+
+
+
+
+
+
 {% endblock %}

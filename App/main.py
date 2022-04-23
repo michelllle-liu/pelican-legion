@@ -8,8 +8,8 @@ from werkzeug.utils import secure_filename
 from werkzeug.datastructures import  FileStorage
 from datetime import timedelta
 
-from App.models.user import db, User, Alumni
-from App.forms import LogIn, SignUp, AlumnusInfo
+from App.models.user import db, User, Alumni, Job, JobSpec
+from App.forms import LogIn, SignUp, AlumnusInfo, NewJob
 
 from App.database import init_db, create_db, get_migrate
 
@@ -158,6 +158,11 @@ def show_alumni():
 @app.route('/jobs')
 def show_jobs():
     return render_template('jobs.html')
+
+@app.route('/addjob')               #added form to get new job to board
+def show_jobform():
+    form = NewJob()
+    return render_template('newjob.html', form=form)
 
 @app.route('/editProfile', methods=['GET'])
 @login_required
