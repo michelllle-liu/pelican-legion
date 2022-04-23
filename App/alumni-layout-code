@@ -1,0 +1,167 @@
+
+/* START OF ALUMNI PAGE */
+.gallery-container{
+  display: flex;
+  /*flex-direction: column;*/
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1700px;
+  max-height: 1700px; 
+  margin: 0; 
+  top: 50px; 
+  padding: 50px; 
+  /* background-color: rgba(127, 255, 212, 0); */
+
+}
+
+.gallery{
+  max-width: 1600px; 
+  /* background-color:#0553b2c5; */
+  height: fit-content; 
+  padding:5px; 
+  /* border: 3px solid black; */
+}
+
+.row.g{
+  /* border: 3px groove gray; */
+  display: flex;
+  flex-direction: row;
+  /* flex-grow: 3; */
+  flex-wrap: wrap; 
+  justify-content: space-between;
+  /* overflow: hidden; */
+  max-width: 100%; 
+  height: fit-content; 
+  margin:auto;
+  padding: 2px;
+}
+
+.row:after {
+content: "";
+display: table;
+clear: both;
+}
+
+figure { 
+  padding: 5px;
+  float: left;
+  height: fit-content;
+  margin-left:auto ;
+  margin-right: auto;
+  /* background-color: rgb(164, 208, 247); */
+}
+  
+  
+.alumni-text {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 1;
+}
+
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 25%; 
+  column-gap: 40px; 
+  height:fit-content;
+  /* float: left;  */
+  padding-left: 20px;
+}
+
+.column img {
+opacity: 0.9;
+cursor: pointer;
+}
+
+
+
+figcaption {
+  width: 150px; 
+  color:rgb(17, 30, 60);
+  font-size: large;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  margin-left:30%;
+  margin-right: auto;
+  margin-bottom: -13%;
+  /* background-color: rgb(164, 208, 247); */
+  
+  
+}
+
+h4 {
+  color: black;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  margin-top: .5%;
+}
+
+/*END OF ALUMNI PAGE*/
+
+
+
+
+
+
+<body>
+      <!--INSERT CONTENT UNDER CLASS: "FIGURE"-->  
+
+       <!--"VIEW BUTTON AVAILABLE - onclick attribute can be filled out"--> 
+  
+  <div class="header">
+    Alumni Gallery
+  </div>
+
+   <div class="gallery-container">
+       <!-- <div class="gallery"> -->
+           
+           <div class="g row">
+
+                {% block layout %}
+                
+
+                <!-- <div class = "colummn"> -->
+
+                    
+                    {% for user in users %}
+                        {% if user.id != current_user.id %}
+                        <div class = "column">
+                        <figure>
+                            <img src="https://images.unsplash.com/photo-1544168190-79c17527004f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Nnx8fGVufDB8fHx8&w=1000&q=80" id="profile1">
+                            <figcaption>{{user.firstName}} {{user.lastName}}</figcaption>
+                        </figure>
+
+                        {% for alumnus in alumni %}
+                            {% if user.id==alumnus.userID %}
+                            <div class="alumni-text">
+                                <p>Graduation Year: {{alumnus.gradYear}}<br>
+                                Programme: {{alumnus.programme}}<br>
+                                Department: {{alumnus.department}}<br>
+                                Faculty: {{alumnus.faculty}}</p>
+
+                            </div>
+                                
+                               
+                            {% endif %}
+                        {% endfor %}
+                        
+                        {% endif %}
+                        
+                        </div>
+                    {% endfor %}
+
+                </div>
+
+                
+                {% endblock %}
+            </div> <!--end of first set-->
+
+       <!-- </div> end of div class -->
+    </div> <!--end of container div-->
+
+</body>
+
+
+
+
