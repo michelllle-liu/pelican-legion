@@ -5,27 +5,27 @@
 {% block content %}
 <div class="container">
         <div class="row">
-            <form class="col s12">
+            <form class="col s12" method="POST" action="/addjob">
                 {{form.hidden_tag()}}
 
                 <div class="row">
                     <div class="input-field col s12">
-                        {{form.JobTitle}}
-                        {{form.JobTitle.label}}
+                        {{form.title}}
+                        {{form.title.label}}
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="input-field col s12">
-                        {{form.JobDescrip.label}}
-                        {{form.JobDescrip}}
+                        {{form.description.label}}
+                        {{form.description}}
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="input-field col s12">
-                        {{form.appDeadline}}
-                        {{form.appDeadline.label}}
+                        {{form.deadline}}
+                        {{form.deadline.label}}
                     </div>
                 </div>
 
@@ -39,5 +39,7 @@
         </div>
     </div>
     <br>
+
     <a href="/jobs" class="waves-effect waves-light indigo btn">Back to Jobs</a>
+    
 {% endblock %}
