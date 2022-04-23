@@ -164,6 +164,15 @@ def show_jobs():
     
     return render_template('jobs.html', jobs=jobs, current_user=current_user)
 
+@app.route('/jobs/<jobID>', methods=['GET', 'DELETE'])
+def delete_job(jobID):
+    job = Job.query.filter_by(jobID=jobID).first()
+    if job:
+        db.session.delete(job)
+        db.session.commit()
+        flash('Job deleted')
+    return redirect(url_for('show_jobs'))
+
 @app.route('/addjob', methods=['GET'])               #added form to get new job to board
 def show_jobform():
     form = NewJob()
