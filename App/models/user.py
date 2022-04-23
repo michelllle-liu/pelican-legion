@@ -9,6 +9,7 @@ class User(db.Model, UserMixin):
     firstName= db.Column(db.String(30), unique=False, nullable=False)
     lastName= db.Column(db.String(30), unique=False, nullable=False) 
     email= db.Column(db.String(40), unique=True, nullable=False)
+    alumni= db.relationship('Alumni', backref='user', lazy=True, cascade="all, delete-orphan")
 
     def __init__(self, username, password, firstName, lastName, email):
         self.username = username
