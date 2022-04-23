@@ -8,7 +8,10 @@ from werkzeug.utils import secure_filename
 from werkzeug.datastructures import  FileStorage
 from datetime import timedelta, datetime
 
-from App.models.user import db, User, Alumni, Job, JobSpec
+from App.models.user import db, User
+from App.models.alumni import db, Alumni
+from App.models.job import db, Job
+
 from App.forms import LogIn, SignUp, AlumnusInfo, NewJob
 
 from App.database import init_db, create_db, get_migrate
@@ -70,8 +73,8 @@ def create_app(config={}):
     return app
 
 app = create_app()
-db.drop_all()
-db.create_all()
+# db.drop_all()
+# db.create_all()
 migrate = get_migrate(app)
 
 ''' Set up JWT here '''
