@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, jsonify, request, send_from_directory, redirect, flash, url_for
 from flask_jwt import JWT, jwt_required, current_identity
+from flask_login import LoginManager, current_user
 
 from App.controllers import (
     create_user, 
@@ -20,8 +21,8 @@ def get_user_page():
 @user_views.route('/alumni')
 def client_app():
     users = get_all_users_json()
-    
-    return render_template('alumni.html', users=users)
+    alumni= get_all_alumni_json()
+    return render_template('alumni.html', users=users, alumni=alumni, current_user=current_user)
 
 @user_views.route('/api/lol')
 def lol():

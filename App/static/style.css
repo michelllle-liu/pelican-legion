@@ -118,3 +118,81 @@ img {vertical-align: middle;}
 
 /*END OF LANDING PAGE*/
 
+/* START OF ALUMNI PAGE */
+.gallery-container{
+  max-width: 1700px;
+  height: fit-content; 
+  margin: auto; 
+  top: 50px; 
+  padding: 10px; 
+  background-color: rgba(127, 255, 212, 0);
+
+}
+
+.gallery{
+  max-width: 1600px; 
+  background-color:#0553b2c5;
+  height: fit-content; 
+  padding:5px; 
+  border: 3px solid black;
+}
+
+.row.gallery{
+  border: 3px groove gray;
+  max-width: 100%; 
+  height: fit-content; 
+  margin:auto;
+  padding: 2px;
+}
+
+.row:after {
+content: "";
+display: table;
+clear: both;
+}
+
+figure { 
+  padding: 5px;
+  float: left;
+  height: fit-content;
+  margin-left:auto ;
+  margin-right: auto;
+  background-color: rgb(164, 208, 247);
+}
+
+.column {
+ 
+  width: 25%; 
+  column-gap: 40px; 
+  height:fit-content;
+  float: left; 
+  padding-left: 20px;
+}
+
+.column img {
+opacity: 0.9;
+cursor: pointer;
+}
+
+
+
+figcaption {
+  width: 150px; 
+  color:rgb(17, 30, 60);
+  font-size: large;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  margin-left:30%;
+  margin-right: auto;
+  margin-bottom: -13%;
+  background-color: rgb(164, 208, 247);
+  
+  
+}
+
+h4 {
+  color: black;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  margin-top: .5%;
+}
+
+/*END OF ALUMNI PAGE*/

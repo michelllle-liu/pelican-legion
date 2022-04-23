@@ -10,6 +10,7 @@ class Alumni (db.Model):
 
     def toDict(self):
         return{
+            'userID':self.userID,
             'alumniID': self.alumniID,
             'gradYear': self.gradYear,
             'programme': self.programme,

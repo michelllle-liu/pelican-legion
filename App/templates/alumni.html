@@ -22,19 +22,6 @@ img {
 
 }
 
-button {                                                         
-  margin-left: 65%;
-  margin-top: 1%;
-  position: relative;
-  padding: 5px;
-  border: none;
-  font-size:small;
-
-}
-
-button:hover {
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-}
 </style>
 
 
@@ -79,16 +66,23 @@ button:hover {
 
                     
                     {% for user in users %}
+                        {% if user.id != current_user.id %}
 
-                    <figure>
-                        <img src="https://images.unsplash.com/photo-1544168190-79c17527004f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Nnx8fGVufDB8fHx8&w=1000&q=80" id="profile1">
-                        <figcaption>{{user.firstName}} {{user.lastName}}</figcaption>
-                        
-                        <figcaption>{{user.alumni_programme}}</figcaption>
+                        <figure>
+                            <img src="https://images.unsplash.com/photo-1544168190-79c17527004f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Nnx8fGVufDB8fHx8&w=1000&q=80" id="profile1">
+                            <figcaption>{{user.firstName}} {{user.lastName}}</figcaption>
+                        </figure>
 
-                        <button class="waves-effect waves-light indigo btn" type="button" onclick="">View Details</button>
-                    </figure>
+                        {% for alumnus in alumni %}
+                            {% if user.id==alumnus.userID %}
+                                <figcaption>{{alumnus.gradYear}}</figcaption>
+                                <figcaption>{{alumnus.programme}}</figcaption>
+                                <figcaption>{{alumnus.department}}</figcaption>
+                                <figcaption>{{alumnus.faculty}}</figcaption>
+                            {% endif %}
+                        {% endfor %}
 
+                        {% endif %}
                     {% endfor %}
 
                 </div>

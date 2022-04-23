@@ -21,6 +21,8 @@ def delete_user(id):
     user= User.query.filter_by(id=id).first()
     if not user:
         return ('Error deleting user :(')
+    alumni= Alumni.query.filter_by(userID=id).first()
+    db.session.delete(alumni)
     db.session.delete(user)
     db.session.commit()
     return ("User deleted!")
