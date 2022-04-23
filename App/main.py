@@ -162,7 +162,7 @@ def show_jobs():
     if jobs is None:
         jobs = []     # if there are no jobs, pass an empty list
     
-    return render_template('jobs.html', jobs=jobs)
+    return render_template('jobs.html', jobs=jobs, current_user=current_user)
 
 @app.route('/addjob', methods=['GET'])               #added form to get new job to board
 def show_jobform():
