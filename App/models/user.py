@@ -19,11 +19,11 @@ class User(db.Model, UserMixin):
 
     def toDict(self):
         return{
-            'id': self.id,
-            'username': self.username,
-            'firstName': self.firstName,
-            'lastName':self.lastName,
-            'email':self.email
+            'id' : self.id,
+            'username' : self.username,
+            'firstName' : self.firstName,
+            'lastName' :self.lastName,
+            'email' :self.email,
         }
 
     def set_password(self, password):
@@ -37,10 +37,10 @@ class User(db.Model, UserMixin):
 class Alumni (db.Model):
     alumniID= db.Column('alumniID', db.Integer, primary_key=True)
     userID= db.Column('userID', db.Integer, db.ForeignKey('user.id')) 
-    gradYear= db.Column(db.Integer, unique=False, nullable=False)    
-    programme= db.Column(db.String(60), unique=False, nullable=False)
-    department= db.Column(db.String(60), unique=False, nullable=False)
-    faculty= db.Column(db.String(60), unique=False, nullable=False)
+    gradYear= db.Column(db.Integer, unique=False, nullable=True)    
+    programme= db.Column(db.String(60), unique=False, nullable=True)
+    department= db.Column(db.String(60), unique=False, nullable=True)
+    faculty= db.Column(db.String(60), unique=False, nullable=True)
 
     def toDict(self):
         return{
