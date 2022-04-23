@@ -49,7 +49,9 @@ summary {
                 </details>
               </td>
               <td>
-                <a class="waves-effect waves-light indigo btn">Delete</a>
+                {% if current_user.id == job.userID %}
+                  <a class="waves-effect waves-light indigo btn">Delete</a>
+                {% endif %}
               </td>
             </tr>
             {% endfor %}
