@@ -15,7 +15,7 @@ def get_all_users_json():
     if not users:
         return []
     users = [user.toDict() for user in users]
-    return json.dumps(users)
+    return users
 
 def delete_user(id):
     user= User.query.filter_by(id=id).first()

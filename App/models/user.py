@@ -11,12 +11,13 @@ class User(db.Model, UserMixin):
     email= db.Column(db.String(40), unique=True, nullable=False)
     alumni= db.relationship('Alumni', backref='user', lazy=True, cascade="all, delete-orphan")
 
-    def __init__(self, username, password, firstName, lastName, email):
+    def __init__(self, username, password, firstName, lastName, email, alumni):
         self.username = username
         self.set_password(password)
         self.firstName=firstName
         self.lastName= lastName
         self.email=email
+        self.alumni=alumni
 
     def toDict(self):
         return{
@@ -25,7 +26,9 @@ class User(db.Model, UserMixin):
             'firstName': self.firstName,
             'lastName':self.lastName,
             'email':self.email,
-            'alumni': [alumni.toDict() for alumni in self.alumni]
+            'alumni': [alumni.toDict() for alumni in self.alumni],
+            #'alumni_programme':[alumni.toDict()['programme'] for alumni in self.alumni]
+            
         }
 
     def set_password(self, password):

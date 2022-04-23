@@ -77,12 +77,15 @@ button:hover {
 
                 <div class = "column">
 
+                    
                     {% for user in users %}
 
                     <figure>
                         <img src="https://images.unsplash.com/photo-1544168190-79c17527004f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Nnx8fGVufDB8fHx8&w=1000&q=80" id="profile1">
                         <figcaption>{{user.firstName}} {{user.lastName}}</figcaption>
-                        <figcaption>{{user.alumni.programme}}</figcaption>
+                        
+                        <figcaption>{{user['alumni'].programme}}</figcaption>
+
                         <button class="waves-effect waves-light indigo btn" type="button" onclick="">View Details</button>
                     </figure>
 
