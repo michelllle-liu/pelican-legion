@@ -1,5 +1,6 @@
 from App.models import User , Alumni  #, GeneralUser, Friend, Job
 from App.database import db
+import json
 
 def get_all_users():
     return User.query.all()
@@ -14,7 +15,7 @@ def get_all_users_json():
     if not users:
         return []
     users = [user.toDict() for user in users]
-    return users
+    return json.dumps(users)
 
 def delete_user(id):
     user= User.query.filter_by(id=id).first()

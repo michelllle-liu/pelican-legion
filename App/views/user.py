@@ -16,10 +16,10 @@ def get_user_page():
     users = get_all_users()
     return render_template('users.html', users=users)
 
-@user_views.route('/api/users')
+@user_views.route('/alumni')
 def client_app():
     users = get_all_users_json()
-    return jsonify(users)
+    return render_template('alumni.html', users=users)
 
 @user_views.route('/api/lol')
 def lol():

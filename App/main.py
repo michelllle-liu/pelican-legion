@@ -148,9 +148,11 @@ def signupAction():
 def dashboard():
     return render_template('dashboard.html')
 
+"""
 @app.route('/alumni')
 def show_alumni():
     return render_template('alumni.html')
+"""
 
 @app.route('/jobs')
 def show_jobs():
