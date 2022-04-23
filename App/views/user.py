@@ -20,6 +20,7 @@ def get_user_page():
 @user_views.route('/alumni')
 def client_app():
     users = get_all_users_json()
+    
     return render_template('alumni.html', users=users)
 
 @user_views.route('/api/lol')

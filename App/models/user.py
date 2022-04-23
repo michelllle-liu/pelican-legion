@@ -27,7 +27,7 @@ class User(db.Model, UserMixin):
             'lastName':self.lastName,
             'email':self.email,
             'alumni': [alumni.toDict() for alumni in self.alumni],
-            #'alumni_programme':[alumni.toDict()['programme'] for alumni in self.alumni]
+            'alumni_programme':[alumni.toDict()['programme'] for alumni in self.alumni]
             
         }
 
