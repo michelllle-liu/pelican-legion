@@ -24,7 +24,8 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'firstName': self.firstName,
             'lastName':self.lastName,
-            'email':self.email
+            'email':self.email,
+            'alumni': [alumni.toDict() for alumni in self.alumni]
         }
 
     def set_password(self, password):
