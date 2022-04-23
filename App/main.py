@@ -1,7 +1,7 @@
 import os
 from flask import Flask, request, render_template, redirect, flash, url_for
 from flask_jwt import JWT, jwt_required, current_identity
-from flask_login import LoginManager, current_user, login_user, login_required
+from flask_login import LoginManager, current_user, login_user, login_required, logout_user
 from flask_uploads import DOCUMENTS, IMAGES, TEXT, UploadSet, configure_uploads
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
@@ -106,6 +106,13 @@ def loginAction():
             login_user(user)
             return redirect(url_for('dashboard'))
     flash('Invalid credentials.')
+    return redirect(url_for('login'))
+
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    flash('You have successfully logged out!')
     return redirect(url_for('login'))
 
 @app.route('/signup', methods=['GET'])
