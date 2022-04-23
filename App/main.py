@@ -6,7 +6,7 @@ from flask_uploads import DOCUMENTS, IMAGES, TEXT, UploadSet, configure_uploads
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
 from werkzeug.datastructures import  FileStorage
-from datetime import timedelta
+from datetime import timedelta, datetime
 
 from App.models.user import db, User, Alumni, Job, JobSpec
 from App.forms import LogIn, SignUp, AlumnusInfo, NewJob
@@ -157,12 +157,43 @@ def show_alumni():
 
 @app.route('/jobs')
 def show_jobs():
-    return render_template('jobs.html')
+    jobs = Job.query.all()
 
-@app.route('/addjob')               #added form to get new job to board
+    if jobs is None:
+        jobs = []     # if there are no jobs, pass an empty list
+    
+    return render_template('jobs.html', jobs=jobs, current_user=current_user)
+
+@app.route('/jobs/<jobID>', methods=['GET', 'DELETE'])
+def delete_job(jobID):
+    job = Job.query.filter_by(jobID=jobID).first()
+    if job:
+        db.session.delete(job)
+        db.session.commit()
+        flash('Job deleted')
+    return redirect(url_for('show_jobs'))
+
+@app.route('/addjob', methods=['GET'])               #added form to get new job to board
 def show_jobform():
     form = NewJob()
     return render_template('newjob.html', form=form)
+
+@app.route('/addjob', methods=['POST'])
+def addJobAction():
+    form = NewJob()
+    data = request.form
+
+    new_job = Job(userID=current_user.id, title=data['title'], description=None, deadline=None)
+
+    if 'description' in data:
+        new_job.description = data['description']
+    if ('deadline' in data) and (data['deadline'] != ''):
+        new_job.deadline = datetime.strptime(data['deadline'], '%Y-%m-%d %H:%M:%S')
+    
+    db.session.add(new_job)
+    db.session.commit()
+    flash('Job has been added to the Job Board!')
+    return redirect(url_for('show_jobs'))
 
 @app.route('/editProfile', methods=['GET'])
 @login_required

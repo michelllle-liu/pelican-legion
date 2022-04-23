@@ -14,11 +14,8 @@ summary {
 
 </style>
 
-<div class="job-navbar">
-    <nav class="indigo" id="nav-job">
-        <h2 style="text-align:center">Job Board</h2>
-        <input type="text" placeholder="Search by keyword...">
-    </nav>
+<div class="header">
+    Job Board
 </div>
 
 <a href="/addjob" class="waves-effect waves-light indigo btn">Add New Job Listing +</a>
@@ -35,50 +32,30 @@ summary {
         </thead>
 
         <tbody>
+          {% if jobs == [] %}
           <tr>
-         
+            <td>No jobs available :(</td>
+            <td></td>
           </tr>
-
-          <tr>
-            <td text-align="left">
-              <h5>Construction Worker Wanted (5+ years Experience Required)</h5> 
-              <details>
-                <summary style="font-size:large">View Details</summary>
-                We are looking for an experienced, driven civil engineer with a wealth of industry knowledge. To ensure success, the ideal candidate 
-                should be comfortable splitting their hours between the office, on-site visits, and attending council meetings. 
-                
-                 The civil engineer should be a critical thinker and have sound subject knowledge of mathematics and physics to identify
-                 and solve engineering problems. You must also possess a certain level of creativity in order to present 
-                 innovative solutions and improvements to technical processes. 
-                 
-                 The successful candidate will be able to effectively communicate ideas, make recommendations, and negotiate project details with their team, subcontractors, and clients. You will be expected to develop detailed designs,do feasibility assessments and site inspections, prepare and implement project plans, as well as monitorand optimize safety procedures, production processes, and regulatory compliance.
-              </details>
-            <td><a class="waves-effect waves-light indigo btn">Update</a></td>
-          </tr>
-
-          <tr>
-            <td text-align="left">
-              <h5>Software Engineer Hiring (No Pay)</h5> 
-              <details>
-                <summary style="font-size:large">View Details</summary>
-                The devloper engineer should be a critical thinker and have sound subject knowledge of mathematics and physics to identify
-                and solve engineering problems. You must also possess a certain level of creativity in order to present 
-                innovative solutions and improvements to technical processes.
-              </details>
-            <td><a class="waves-effect waves-light indigo btn">Update</a></td>
-          </tr>
-
-          <tr>
-            <td text-align="left">
-              <h5>Ease Up Needed Urgently (In BULK)</h5> 
-              <details>
-                <summary style="font-size:large">View Details</summary>
-                Im at my wits end sir please have mercy
-                Somebody call 911 shawdy fire burning on the dancefloor whoa-
-              </details>
-            <td><a class="waves-effect waves-light indigo btn">Update</a></td>
-          </tr>
-
+          {% else %}
+            {% for job in jobs %}
+            <tr>
+              <td text-align="left">
+                <h5>{{job.title}}</h5>
+                <details>
+                  <summary style="font-size: large">View Details</summary>
+                  <p>{{job.description}}</p>
+                  <p>Application Deadline: {{job.deadline}}</p>
+                </details>
+              </td>
+              <td>
+                {% if current_user.id == job.userID %}
+                  <a href="{{url_for('delete_job', jobID=job.jobID)}}" class="waves-effect waves-light indigo btn">Delete</a>
+                {% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+          {% endif %}
         </tbody>
       </table>
 
