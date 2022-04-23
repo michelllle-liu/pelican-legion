@@ -159,10 +159,12 @@ def dashboard():
     return render_template('dashboard.html', current_user=current_user, alumnus_info=alumnus_info)
 
 @app.route('/alumni')
+@login_required
 def show_alumni():
     return render_template('alumni.html')
 
 @app.route('/jobs')
+@login_required
 def show_jobs():
     jobs = Job.query.all()
 
@@ -172,6 +174,7 @@ def show_jobs():
     return render_template('jobs.html', jobs=jobs, current_user=current_user)
 
 @app.route('/jobs/<jobID>', methods=['GET', 'DELETE'])
+@login_required
 def delete_job(jobID):
     job = Job.query.filter_by(jobID=jobID).first()
     if job:
@@ -181,11 +184,13 @@ def delete_job(jobID):
     return redirect(url_for('show_jobs'))
 
 @app.route('/addjob', methods=['GET'])               #added form to get new job to board
+@login_required
 def show_jobform():
     form = NewJob()
     return render_template('newjob.html', form=form)
 
 @app.route('/addjob', methods=['POST'])
+@login_required
 def addJobAction():
     form = NewJob()
     data = request.form
