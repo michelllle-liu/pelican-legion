@@ -4,7 +4,8 @@ from flask_jwt import JWT, jwt_required, current_identity
 from App.controllers import (
     create_user, 
     get_all_users,
-    get_all_users_json
+    get_all_users_json,
+    delete_user
 )
 
 user_views = Blueprint('user_views', __name__, template_folder='../templates')
