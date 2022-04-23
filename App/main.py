@@ -159,10 +159,27 @@ def show_alumni():
 def show_jobs():
     return render_template('jobs.html')
 
-@app.route('/addjob')               #added form to get new job to board
+@app.route('/addjob', methods=['GET'])               #added form to get new job to board
 def show_jobform():
     form = NewJob()
     return render_template('newjob.html', form=form)
+
+@app.route('/addjob', methods=['POST'])
+def addJobAction():
+    form = NewJob()
+    data = request.form
+
+    new_job = Job(userID=current_user.id, title=data['title'], description=None, applicationDeadline=None)
+
+    if 'description' in data:
+        new_job.description = data['description']
+    if 'deadline' in data:
+        new_job.deadline = data['deadline']
+    
+    db.session.add(new_job)
+    db.session.commit()
+    flash('Job has been added to the Job Board!')
+    return redirect(url_for('show_jobs'))
 
 @app.route('/editProfile', methods=['GET'])
 @login_required
