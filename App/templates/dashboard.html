@@ -1,3 +1,76 @@
 {% extends "navbar2.html" %}
 
 {{ super() }}
+
+{% block content %}
+    <div class="content-container">
+        <div class="header">
+            Your Profile
+        </div>
+
+        <div class="section">
+            <div class="label">
+                First Name
+            </div>
+            <div class="value">
+                {{current_user.firstName}}
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="label">
+                Last Name
+            </div>
+            <div class="value">
+                {{current_user.lastName}}
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="label">
+                Email
+            </div>
+            <div class="value">
+                {{current_user.email}}
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="label">
+                Graduation Year
+            </div>
+            <div class="value">
+                {{alumnus_info.gradYear}}
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="label">
+                Faculty
+            </div>
+            <div class="value">
+                {{alumnus_info.faculty}}
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="label">
+                Department
+            </div>
+            <div class="value">
+                {{alumnus_info.department}}
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="label">
+                Programme
+            </div>
+            <div class="value">
+                {{alumnus_info.programme}}
+            </div>
+        </div>
+
+        <a href="/editProfile" class="edit-btn btn-large waves-effect waves-light indigo">Edit Profile</a>
+    </div>
+{% endblock %}
