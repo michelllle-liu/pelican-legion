@@ -187,7 +187,7 @@ def addJobAction():
 
     if 'description' in data:
         new_job.description = data['description']
-    if 'deadline' in data:
+    if ('deadline' in data) and (data['deadline'] != ''):
         new_job.deadline = datetime.strptime(data['deadline'], '%Y-%m-%d %H:%M:%S')
     
     db.session.add(new_job)
