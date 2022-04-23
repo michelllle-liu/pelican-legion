@@ -50,7 +50,7 @@ summary {
               </td>
               <td>
                 {% if current_user.id == job.userID %}
-                  <a class="waves-effect waves-light indigo btn">Delete</a>
+                  <a href="{{url_for('delete_job', jobID=job.jobID)}}" class="waves-effect waves-light indigo btn">Delete</a>
                 {% endif %}
               </td>
             </tr>
