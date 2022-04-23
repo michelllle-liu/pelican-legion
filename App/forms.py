@@ -17,9 +17,9 @@ class LogIn(FlaskForm):
     submit = SubmitField('Login', render_kw={'type' : 'submit', 'class' : 'col s12 btn btn-large waves-effect waves-light indigo'})
     
 class NewJob(FlaskForm):
-    JobTitle = StringField('Job Title', validators=[InputRequired()])
-    JobDescrip = TextAreaField('Job Description', render_kw={'class' : 'materialize-textarea'}) 
-    appDeadline = DateField('Deadline for Application')
+    title = StringField('Job Title', validators=[InputRequired()])
+    description = TextAreaField('Job Description', render_kw={'class' : 'materialize-textarea'}) 
+    deadline = DateField('Application Deadline')
     add = SubmitField('Add Job', render_kw={'type' : 'submit', 'class' : 'col s12 btn btn-large waves-effect waves-light indigo'})
 
 class AlumnusInfo(FlaskForm):
