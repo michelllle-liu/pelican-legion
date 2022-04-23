@@ -152,7 +152,7 @@ img {vertical-align: middle;}
   border: 3px solid black;
 }
 
-.row{
+.row.gallery{
   border: 3px groove gray;
   max-width: 100%; 
   height: fit-content; 
