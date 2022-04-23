@@ -17,7 +17,7 @@ class LogIn(FlaskForm):
     submit = SubmitField('Login', render_kw={'type' : 'submit', 'class' : 'col s12 btn btn-large waves-effect waves-light indigo'})
 
 class AlumnusInfo(FlaskForm):
-    gradYear = IntegerField('Graduation Year', validators=[NumberRange(min=0, max=4)])
+    gradYear = IntegerField('Graduation Year', validators=[NumberRange(min=1900, max=3000)])
     faculty = StringField('Faculty')
     department = StringField('Department')
     programme = StringField('Programme')
