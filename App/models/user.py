@@ -11,7 +11,7 @@ class User(db.Model, UserMixin):
     email= db.Column(db.String(40), unique=True, nullable=False)
     #alumni= db.relationship('Alumni', backref='user', lazy=True, cascade="all, delete-orphan")
 
-    def __init__(self, username, password, firstName, lastName, email, alumni):
+    def __init__(self, username, password, firstName, lastName, email):
         self.username = username
         self.set_password(password)
         self.firstName=firstName
