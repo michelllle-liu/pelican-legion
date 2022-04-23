@@ -160,10 +160,12 @@ def dashboard():
 
     return render_template('dashboard.html', current_user=current_user, alumnus_info=alumnus_info)
 
+"""
 @app.route('/alumni')
 @login_required
 def show_alumni():
     return render_template('alumni.html')
+"""
 
 @app.route('/jobs')
 @login_required

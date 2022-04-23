@@ -8,6 +8,7 @@ from App.controllers import (
     create_user, 
     get_all_users_json, 
     create_alumni, 
+    delete_user,
     get_all_alumni_json, 
     create_generalUser, 
     get_all_generalUsers_json,
@@ -41,6 +42,12 @@ def create_user_command():
 @app.cli.command("get-users")
 def get_users():
     print(get_all_users_json())
+
+@app.cli.command("delete-user")
+def delete_user_command():
+    id=input('Enter a user ID: ')
+    message= delete_user(id);
+    print(message);
 
 @app.cli.command("create-alumni")   
 def create_alumni_command():

@@ -120,6 +120,7 @@ img {vertical-align: middle;}
 
 
 
+
 /*START OF JOB BOARD PAGE*/
 
 .job-navbar{
@@ -131,6 +132,7 @@ img {vertical-align: middle;}
  }
 
 /*END OF JOB BOARD PAGE*/
+
 
 
 /* START OF ALUMNI PAGE */
@@ -176,7 +178,7 @@ figure {
   
   
 
-}
+
 
 .column {
  
@@ -216,6 +218,7 @@ h4 {
 /*END OF ALUMNI PAGE*/
 
 
+
 /*START OF DASHBOARD*/
 .content-container{
   display: flex;
@@ -241,4 +244,3 @@ h4 {
   margin-top: 50px;
   width: 25%;
 }
-

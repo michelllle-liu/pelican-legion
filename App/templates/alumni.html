@@ -53,87 +53,45 @@ button:hover {
 
        <div class="gallery indigo">
            
-            <div class="gallery row">
+           <div class="gallery row">
+
+                {% block layout %}
+                
 
                 <div class = "column">
-                    <figure>
-                        <img src="https://images.unsplash.com/photo-1544168190-79c17527004f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Nnx8fGVufDB8fHx8&w=1000&q=80" id="profile1">
-                        <figcaption>Marcus Lee</figcaption>
-                        <button class="waves-effect waves-light indigo btn" type="button" onclick="">View Details</button>
-                    </figure>
-                </div>
 
                     
+                    {% for user in users %}
+                        {% if user.id != current_user.id %}
 
-                <div class = "column">
-                    <figure>
-                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" id="profile1">
-                        <figcaption>Jerry Jackson</figcaption>
-                        <button class="waves-effect waves-light indigo btn" type="button" onclick="">View Details</button>
-                    </figure>
+                        <figure>
+                            <img src="https://images.unsplash.com/photo-1544168190-79c17527004f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Nnx8fGVufDB8fHx8&w=1000&q=80" id="profile1">
+                            <figcaption>{{user.firstName}} {{user.lastName}}</figcaption>
+                        </figure>
+
+                        {% for alumnus in alumni %}
+                            {% if user.id==alumnus.userID %}
+                                <figcaption>{{alumnus.gradYear}}</figcaption>
+                                <figcaption>{{alumnus.programme}}</figcaption>
+                                <figcaption>{{alumnus.department}}</figcaption>
+                                <figcaption>{{alumnus.faculty}}</figcaption>
+                               
+                            {% endif %}
+                        {% endfor %}
+
+                        {% endif %}
+                    {% endfor %}
+
                 </div>
 
-                <div class = "column">
-                    <figure>
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjd8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" id="profile1">
-                        <figcaption>Tyler Finnely</figcaption>
-                        <button class="waves-effect waves-light indigo btn" type="button" onclick="">View Details</button>
-                    </figure>
-                </div>
+                
+                {% endblock %}
+            </div> <!--end of first set-->
 
-                <div class = "column">
-                    <figure>
-                        <img src="https://images.unsplash.com/photo-1592520113018-180c8bc831c9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTZ8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" id="profile1">
-                        <figcaption>Natalie Jacobs</figcaption>
-                        <button class="waves-effect waves-light indigo btn" type="button" onclick="">View Details</button>
-                    </figure>
-                </div>
-            </div>
-
-            <div class="gallery row">
-                <div class = "column">
-                    <figure>
-                        <img src="https://www.morganstanley.com/content/dam/msdotcom/people/tiles/isaiah-dwuma.jpg.img.380.medium.jpg/1594668408164.jpg" id="profile1">
-                        <figcaption>Kobi Crest</figcaption>
-                        <button class="waves-effect waves-light indigo btn" type="button" onclick="">View Details</button>
-                    </figure>
-            </div>
-
-            <div class = "column">
-                <figure>
-                    <img src="https://www.fs.usda.gov/research/people/ritsdocs/drlederle.jpg" id="profile1">
-                    <figcaption>Ana Hailey</figcaption>
-                    <button class="waves-effect waves-light indigo btn" type="button" onclick="">View Details</button>
-                </figure>
-            </div>
-
-            <div class = "column">
-                <div class = "column">
-                    <figure>
-                        <img src="https://avatars.sched.co/7/43/5091711/avatar.jpg?cdc" id="profile1">
-                        <figcaption>Micholas Nendez</figcaption>
-                        <button class="waves-effect waves-light indigo btn" type="button" onclick="">View Details</button>
-                    </figure>
-                </div>
-            </div>
-
-            <div class = "column">
-                <figure>
-                    <img src="https://www.superprof.co.uk/images/teachers/teacher-home-emerging-india-profile-social-and-cultural-aspects-the-people.jpg" id="profile1">
-                    <figcaption>Akshat Singh</figcaption>
-                    <button class="waves-effect waves-light indigo btn" type="button" onclick="">View Details</button>
-                </figure>
-            </div>
-
-            </div>
-       </div>
-    </div>
-
-   </div>
-
+       </div> <!--end of div class-->
+    </div> <!--end of container div-->
 
 </body>
-
 
 
 {% endblock %}
