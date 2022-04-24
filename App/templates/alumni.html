@@ -39,54 +39,60 @@ button:hover {
 
 
 <body>
-      <!--INSERT CONTENT UNDER CLASS: "FIGURE"-->  
+  <!--INSERT CONTENT UNDER CLASS: "FIGURE"-->  
 
-       <!--"VIEW BUTTON AVAILABLE - onclick attribute can be filled out"--> 
-  
-  <div class="header">
-    Alumni Gallery
-  </div>
+   <!--"VIEW BUTTON AVAILABLE - onclick attribute can be filled out"--> 
 
-   <div class="gallery-container">
-       <div class="gallery">
-           
-           <div class="g row">
+<div class="header">
+Alumni Gallery
+</div>
 
-                {% block layout %}
-                
+<div class="gallery-container">
+   <!-- <div class="gallery"> -->
 
-                <div class = "column">
+       <div class="g row">
 
-                    
-                    {% for user in users %}
-                        {% if user.id != current_user.id %}
+            {% block layout %}
 
-                        <figure>
-                            <img src="https://images.unsplash.com/photo-1544168190-79c17527004f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Nnx8fGVufDB8fHx8&w=1000&q=80" id="profile1">
-                            <figcaption>{{user.firstName}} {{user.lastName}}</figcaption>
-                        </figure>
 
-                        {% for alumnus in alumni %}
-                            {% if user.id==alumnus.userID %}
-                                <figcaption>{{alumnus.gradYear}}</figcaption>
-                                <figcaption>{{alumnus.programme}}</figcaption>
-                                <figcaption>{{alumnus.department}}</figcaption>
-                                <figcaption>{{alumnus.faculty}}</figcaption>
-                               
-                            {% endif %}
-                        {% endfor %}
+            <!-- <div class = "colummn"> -->
+
+
+                {% for user in users %}
+                    {% if user.id != current_user.id %}
+                    <div class = "column">
+                    <figure>
+                        <img src="https://images.unsplash.com/photo-1544168190-79c17527004f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Nnx8fGVufDB8fHx8&w=1000&q=80" id="profile1">
+                        <figcaption>{{user.firstName}} {{user.lastName}}</figcaption>
+                    </figure>
+
+                    {% for alumnus in alumni %}
+                        {% if user.id==alumnus.userID %}
+                        <div class="alumni-text">
+                            <p>Graduation Year: {{alumnus.gradYear}}<br>
+                            Programme: {{alumnus.programme}}<br>
+                            Department: {{alumnus.department}}<br>
+                            Faculty: {{alumnus.faculty}}</p>
+
+                        </div>
+
 
                         {% endif %}
                     {% endfor %}
 
-                </div>
+                    {% endif %}
 
-                
-                {% endblock %}
-            </div> <!--end of first set-->
+                    </div>
+                {% endfor %}
 
-       </div> <!--end of div class-->
-    </div> <!--end of container div-->
+            </div>
+
+
+            {% endblock %}
+        </div> <!--end of first set-->
+
+   <!-- </div> end of div class -->
+</div> <!--end of container div-->
 
 </body>
 

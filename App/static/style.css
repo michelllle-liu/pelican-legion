@@ -137,11 +137,15 @@ img {vertical-align: middle;}
 
 /* START OF ALUMNI PAGE */
 .gallery-container{
+  display: flex;
+  /*flex-direction: column;*/
+  flex-wrap: wrap;
+  justify-content: space-between;
   max-width: 1700px;
-  height: fit-content; 
-  margin: auto; 
+  max-height: 1700px; 
+  margin: 0; 
   top: 50px; 
-  padding: 10px; 
+  padding: 50px; 
   /* background-color: rgba(127, 255, 212, 0); */
 
 }
@@ -156,6 +160,12 @@ img {vertical-align: middle;}
 
 .row.g{
   /* border: 3px groove gray; */
+  display: flex;
+  flex-direction: row;
+  /* flex-grow: 3; */
+  flex-wrap: wrap; 
+  justify-content: space-between;
+  /* overflow: hidden; */
   max-width: 100%; 
   height: fit-content; 
   margin:auto;
@@ -176,17 +186,24 @@ figure {
   margin-right: auto;
   /* background-color: rgb(164, 208, 247); */
 }
-  
-  
 
+
+.alumni-text {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 1;
+}
 
 
 .column {
- 
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
   width: 25%; 
   column-gap: 40px; 
   height:fit-content;
-  float: left; 
+  /* float: left;  */
   padding-left: 20px;
 }
 
@@ -206,8 +223,8 @@ figcaption {
   margin-right: auto;
   margin-bottom: -13%;
   /* background-color: rgb(164, 208, 247); */
-  
-  
+
+
 }
 
 h4 {
