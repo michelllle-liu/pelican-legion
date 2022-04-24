@@ -40,8 +40,8 @@ def loadConfig(app, config):
     if app.config['ENV'] == "DEVELOPMENT":
         app.config.from_object('App.config')
     else:
-        # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI')
-        app.config['DBURI'] = "postgresql://iyvpyncuikxtmm:748440c014d5f7ef36a34bdb6c760242e8a47224975631a0c07edcb9ee057710@ec2-54-80-122-11.compute-1.amazonaws.com:5432/dbt01ad2m2e482"
+        app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI')
+        # app.config['DBURI'] = "postgresql://iyvpyncuikxtmm:748440c014d5f7ef36a34bdb6c760242e8a47224975631a0c07edcb9ee057710@ec2-54-80-122-11.compute-1.amazonaws.com:5432/dbt01ad2m2e482"
         app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
         app.config['JWT_EXPIRATION_DELTA'] =  timedelta(days=int(os.environ.get('JWT_EXPIRATION_DELTA')))
         app.config['DEBUG'] = os.environ.get('ENV').upper() != 'PRODUCTION'
