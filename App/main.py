@@ -73,8 +73,8 @@ def create_app(config={}):
     return app
 
 app = create_app()
-# db.drop_all()
-# db.create_all()
+db.drop_all()
+db.create_all()
 migrate = get_migrate(app)
 
 ''' Set up JWT here '''
