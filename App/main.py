@@ -152,7 +152,7 @@ def signupAction():
         flash('Account created!')
         return redirect(url_for('login'))
     flash('Error: Invalid input')
-    return redirect(url_for('show_signup'))
+    return redirect(url_for('/dashboard'))
 
 @app.route('/dashboard', methods=['GET'])
 @login_required
